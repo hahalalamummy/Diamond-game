@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84925B7A1D850E7A000D2C87 /* screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84925B791D850E7A000D2C87 /* screen.jpg */; };
 		93205EB51D85079A00EF5763 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93205EB41D85079A00EF5763 /* AppDelegate.swift */; };
 		93205EB71D85079A00EF5763 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93205EB61D85079A00EF5763 /* GameScene.sks */; };
 		93205EB91D85079A00EF5763 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93205EB81D85079A00EF5763 /* GameScene.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84925B791D850E7A000D2C87 /* screen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screen.jpg; sourceTree = "<group>"; };
 		93205EB11D85079900EF5763 /* Diamonds Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diamonds Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93205EB41D85079A00EF5763 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93205EB61D85079A00EF5763 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		93205EB31D85079900EF5763 /* Diamonds Game */ = {
 			isa = PBXGroup;
 			children = (
+				84925B791D850E7A000D2C87 /* screen.jpg */,
 				93205EB41D85079A00EF5763 /* AppDelegate.swift */,
 				93205EB61D85079A00EF5763 /* GameScene.sks */,
 				93205EB81D85079A00EF5763 /* GameScene.swift */,
@@ -129,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93205EB71D85079A00EF5763 /* GameScene.sks in Resources */,
+				84925B7A1D850E7A000D2C87 /* screen.jpg in Resources */,
 				93205EC31D85079A00EF5763 /* LaunchScreen.storyboard in Resources */,
 				93205EC01D85079A00EF5763 /* Assets.xcassets in Resources */,
 				93205EBE1D85079A00EF5763 /* Main.storyboard in Resources */,
@@ -296,6 +300,7 @@
 				93205EC91D85079A00EF5763 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
