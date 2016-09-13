@@ -9,6 +9,11 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    var diamondChoseI : Int = 0
+    var diamondChoseJ : Int = 0
+    var diamondToI : Int = 0
+    var diamondToJ : Int = 0
+    
     var diamondsArray = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: SKSpriteNode(imageNamed: "1.png")))
     var diamondsArraySTT = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: -1))
     func radDiamonds() -> Int {
@@ -92,13 +97,35 @@ class GameScene: SKScene {
         addChild(background)
     }
     func swap2Diamonds(i1 : Int, j1 : Int ,i2 :Int ,j2:Int) {
-        let m = diamondsArraySTT[i1][j1]
-        diamondsArraySTT[i1][j1] = diamondsArraySTT [i2][j2]
-        diamondsArraySTT[i2][j2] = m
-        diamondsArray[i1][j1].removeFromParent()
-        diamondsArray[i2][j2].removeFromParent()
-        setDiamonds(i1, j: j1, x: diamondsArraySTT[i1][j1])
-        setDiamonds(i2, j: j2, x: diamondsArraySTT[i2][j2])
+        let oldPosition1 : CGPoint
+        oldPosition1 = diamondsArray[i1][j1].position
+        let oldPosition2 : CGPoint
+        oldPosition2 = diamondsArray[i2][j2].position
+        
+        let animationSwap1 = SKAction.runBlock{
+            let diamondMove = SKAction.moveTo(oldPosition1, duration: 0.3)
+            self.diamondsArray[i1][j1].runAction(SKAction.repeatActionForever(diamondMove))
+        }
+        let animationSwap2 = SKAction.runBlock{
+            let diamondMove = SKAction.moveTo(oldPosition2, duration: 0.3)
+            self.diamondsArray[i2][j2].runAction(SKAction.repeatActionForever(diamondMove))
+        }
+        
+//        let m = diamondsArray[i1][j1]
+//        diamondsArray[i1][j1] = diamondsArray[i2][j2]
+//        diamondsArray[i2][j2] = m
+        swap(&diamondsArray[i1][j1], &diamondsArray[i2][j2])
+        
+        let moveDiamond1 = SKAction.sequence([animationSwap1, SKAction.waitForDuration(0.1)])
+        let moveDiamond2 = SKAction.sequence([animationSwap2, SKAction.waitForDuration(0.1)])
+        
+        self.runAction(moveDiamond1)
+        self.runAction(moveDiamond2)
+//        diamondsArray[i1][j1].removeFromParent()
+//        diamondsArray[i2][j2].removeFromParent()
+//        setDiamonds(i1, j: j1, x: diamondsArraySTT[i1][j1])
+//        setDiamonds(i2, j: j2, x: diamondsArraySTT[i2][j2])
+        
         
     }
     override func didMoveToView(view: SKView) {
@@ -127,12 +154,16 @@ class GameScene: SKScene {
                         
                         if ((dxm<=dxTouch) && ( dym <= dyTouch) && (dyTouch<=dy) && (dxTouch<=dx)){
                             print(i," ",j)
-                            swap2Diamonds(i, j1: j, i2: 1, j2: 1)
+                            diamondChoseI=i;
+                            diamondChoseJ=j;
+                            //swap2Diamonds(i, j1: j, i2: 1, j2: 1)
+                            //swap(&diamondsArray[i][j], &diamondsArray[1][1])
+//                            let t=diamondsArray[i][j]
+//                            diamondsArray[i][j]=diamondsArray[1][1]
+//                            diamondsArray[1][1]=t
                         }
                     }
                 }
-        
-        
             }
         //        for touch in touches {
         //            let location = touch.locationInNode(self)
@@ -150,8 +181,35 @@ class GameScene: SKScene {
         //            self.addChild(sprite)
     }
     
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch = touches.first
+        let location = touch!.locationInNode(self)
+        let dxTouch = location.x
+        let dyTouch = location.y
+        print(dxTouch," ",dyTouch)
+        for i in 1..<6 {
+            for j in 1..<5 {
+                let dx = diamondsArray[i][j].position.x + 50
+                let dy = diamondsArray[i][j].position.y + 40
+                let dxm = diamondsArray[i][j].position.x
+                let dym = diamondsArray[i][j].position.y
+                
+                if ((dxm<=dxTouch) && ( dym <= dyTouch) && (dyTouch<=dy) && (dxTouch<=dx)){
+                    print(i," ",j)
+                    diamondToI=i;
+                    diamondToJ=j;
+                    swap2Diamonds(diamondChoseI, j1: diamondChoseJ, i2: diamondToI, j2: diamondToJ)
+                    //swap(&diamondsArray[i][j], &diamondsArray[1][1])
+                    //                            let t=diamondsArray[i][j]
+                    //                            diamondsArray[i][j]=diamondsArray[1][1]
+                    //                            diamondsArray[1][1]=t
+                }
+            }
+        }
+
+    }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
-    }
+}
