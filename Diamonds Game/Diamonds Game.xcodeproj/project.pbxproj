@@ -21,7 +21,8 @@
 		93205ED31D850E6500EF5763 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 93205ED21D850E6500EF5763 /* 5.png */; };
 		93205ED51D850F1400EF5763 /* screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93205ED41D850F1400EF5763 /* screen.jpg */; };
 		93205ED91D8512A400EF5763 /* backgroundemo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93205ED81D8512A400EF5763 /* backgroundemo.jpg */; };
-		93205EDB1D85137D00EF5763 /* diamonds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93205EDA1D85137D00EF5763 /* diamonds.swift */; };
+		93205EDB1D85137D00EF5763 /* Diamonds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93205EDA1D85137D00EF5763 /* Diamonds.swift */; };
+		93FF06B21D85438900D52344 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 93FF06B11D85438900D52344 /* background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +42,8 @@
 		93205ED21D850E6500EF5763 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		93205ED41D850F1400EF5763 /* screen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screen.jpg; sourceTree = "<group>"; };
 		93205ED81D8512A400EF5763 /* backgroundemo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backgroundemo.jpg; sourceTree = "<group>"; };
-		93205EDA1D85137D00EF5763 /* diamonds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = diamonds.swift; sourceTree = "<group>"; };
+		93205EDA1D85137D00EF5763 /* Diamonds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diamonds.swift; sourceTree = "<group>"; };
+		93FF06B11D85438900D52344 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		93205EB31D85079900EF5763 /* Diamonds Game */ = {
 			isa = PBXGroup;
 			children = (
+				93FF06B11D85438900D52344 /* background.png */,
 				93205ED81D8512A400EF5763 /* backgroundemo.jpg */,
 				93205ED41D850F1400EF5763 /* screen.jpg */,
 				93205ED21D850E6500EF5763 /* 5.png */,
@@ -89,7 +92,7 @@
 				93205EBF1D85079A00EF5763 /* Assets.xcassets */,
 				93205EC11D85079A00EF5763 /* LaunchScreen.storyboard */,
 				93205EC41D85079A00EF5763 /* Info.plist */,
-				93205EDA1D85137D00EF5763 /* diamonds.swift */,
+				93205EDA1D85137D00EF5763 /* Diamonds.swift */,
 			);
 			path = "Diamonds Game";
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93205ECD1D850E4B00EF5763 /* 2.png in Resources */,
+				93FF06B21D85438900D52344 /* background.png in Resources */,
 				93205ED51D850F1400EF5763 /* screen.jpg in Resources */,
 				93205EB71D85079A00EF5763 /* GameScene.sks in Resources */,
 				93205EC31D85079A00EF5763 /* LaunchScreen.storyboard in Resources */,
@@ -173,7 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93205EDB1D85137D00EF5763 /* diamonds.swift in Sources */,
+				93205EDB1D85137D00EF5763 /* Diamonds.swift in Sources */,
 				93205EB91D85079A00EF5763 /* GameScene.swift in Sources */,
 				93205EBB1D85079A00EF5763 /* GameViewController.swift in Sources */,
 				93205EB51D85079A00EF5763 /* AppDelegate.swift in Sources */,
@@ -328,6 +332,7 @@
 				93205EC91D85079A00EF5763 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

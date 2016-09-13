@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D28EDBCCD74981FF9FF16EC01B57895DD63103C5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F69A915D597F538E151202F42730BF579DEEBFCB" : 0,
+    "D28EDBCCD74981FF9FF16EC01B57895DD63103C5" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1FDB5159-89FF-4084-90CB-8662B04CDC0B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F69A915D597F538E151202F42730BF579DEEBFCB" : "",
+    "D28EDBCCD74981FF9FF16EC01B57895DD63103C5" : "projects\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Diamonds Game",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Diamonds Game\/Diamonds Game.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/hahalalamummy\/abc.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D28EDBCCD74981FF9FF16EC01B57895DD63103C5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/qhuydtvt\/CI-iOS5.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F69A915D597F538E151202F42730BF579DEEBFCB"
+    }
+  ]
+}

@@ -1,19 +1,48 @@
 //
 //  GameViewController.swift
-//  Diamonds Game
+//  Session1
 //
-//  Created by hiepdz on 9/11/16.
-//  Copyright (c) 2016 hiepdz. All rights reserved.
+//  Created by Apple on 8/28/16.
+//  Copyright (c) 2016 TechKids. All rights reserved.
 //
 
 import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController {
-    var scene: GameScene!
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        print("1")
+        //1 cast view to skView and configure view
+        let skView = self.view as! SKView
+        skView.showsNodeCount = true
+        skView.showsFPS = true
+        
+        print("2")
+        //2 create game scene
+        let gameScene = GameScene(size: skView.frame.size)
+        
+        print("3")
+        //3 present game scene
+        skView.presentScene(gameScene)
+        
+        
+        //        if let scene = GameScene(fileNamed:"GameScene") {
+        //            // Configure the view.
+        //            let skView = self.view as! SKView
+        //            skView.showsFPS = true
+        //            skView.showsNodeCount = true
+        //
+        //            /* Sprite Kit applies additional optimizations to improve rendering performance */
+        //            skView.ignoresSiblingOrder = true
+        //
+        //            /* Set the scale mode to scale to fit the window */
+        //            scene.scaleMode = .AspectFill
+        //
+        //            skView.presentScene(scene)
+        //        }
     }
     
     override func shouldAutorotate() -> Bool {
@@ -21,21 +50,19 @@ class GameViewController: UIViewController {
     }
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return [UIInterfaceOrientationMask.Portrait, UIInterfaceOrientationMask.PortraitUpsideDown]
+        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+            return .AllButUpsideDown
+        } else {
+            return .All
+        }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Configure the view.
-        let skView = view as! SKView
-        skView.multipleTouchEnabled = false
-        
-        // Create and configure the scene.
-        scene = GameScene(size: skView.bounds.size)
-        scene.scaleMode = .AspectFill
-        
-        // Present the scene.
-        skView.presentScene(scene)
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Release any cached data, images, etc that aren't in use.
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 }
