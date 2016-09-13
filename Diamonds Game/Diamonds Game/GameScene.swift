@@ -15,7 +15,7 @@ class GameScene: SKScene {
     var diamondToJ : Int = 0
     
     var diamondsArray = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: SKSpriteNode(imageNamed: "1.png")))
-    var diamondsArraySTT = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: -1))
+    //var diamondsArraySTT = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: -1))
     func radDiamonds() -> Int {
         return Int(arc4random_uniform(5)+1)
         //return 1
@@ -55,7 +55,7 @@ class GameScene: SKScene {
                 let x=radDiamonds()
                 
                 
-                diamondsArraySTT[i][j]  =   x
+                //diamondsArraySTT[i][j]  =   x
                 setDiamonds(i, j: j, x: x)
                                 //
                 
@@ -102,6 +102,8 @@ class GameScene: SKScene {
         let oldPosition2 : CGPoint
         oldPosition2 = diamondsArray[i2][j2].position
         
+        //swap(&diamondsArray[i1][j1], &diamondsArray[i2][j2])
+        
         let animationSwap1 = SKAction.runBlock{
             let diamondMove = SKAction.moveTo(oldPosition1, duration: 0.3)
             self.diamondsArray[i1][j1].runAction(SKAction.repeatActionForever(diamondMove))
@@ -110,11 +112,11 @@ class GameScene: SKScene {
             let diamondMove = SKAction.moveTo(oldPosition2, duration: 0.3)
             self.diamondsArray[i2][j2].runAction(SKAction.repeatActionForever(diamondMove))
         }
+ 
+        let m = diamondsArray[i2][j2]
+        diamondsArray[i2][j2] = diamondsArray[i1][j1]
+        diamondsArray[i1][j1] = m
         
-//        let m = diamondsArray[i1][j1]
-//        diamondsArray[i1][j1] = diamondsArray[i2][j2]
-//        diamondsArray[i2][j2] = m
-        swap(&diamondsArray[i1][j1], &diamondsArray[i2][j2])
         
         let moveDiamond1 = SKAction.sequence([animationSwap1, SKAction.waitForDuration(0.1)])
         let moveDiamond2 = SKAction.sequence([animationSwap2, SKAction.waitForDuration(0.1)])
@@ -206,7 +208,10 @@ class GameScene: SKScene {
                 }
             }
         }
-
+        diamondChoseI=0
+        diamondChoseJ=0
+        diamondToI=0
+        diamondToJ=0
     }
     
     override func update(currentTime: CFTimeInterval) {
