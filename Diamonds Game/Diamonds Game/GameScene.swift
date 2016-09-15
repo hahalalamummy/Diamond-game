@@ -97,12 +97,13 @@ class GameScene: SKScene {
         //3
         addChild(background)
     }
-    func checkAllowSwapOrNot(i1 : Int, j1 : Int , j1:Int , j2:Int) -> Bool{
-        var x = 1
-        
-        return true
+    func checkLetSwapOrNot(i1 : Int , j1 : Int , i2 : Int , j2 : Int) -> Bool{
+        let x = abs(i1-i2) + abs(j1-j2)
+        if (x <= 1) {return false} else {return true}
     }
+    
     func swap2Diamonds(i1 : Int, j1 : Int ,i2 :Int ,j2:Int) {
+        if ( checkLetSwapOrNot(i1, j1: j1, i2: i2, j2: j2) ){ return }
         let oldPosition1 : CGPoint
         oldPosition1 = diamondsArray[i1][j1].position
         let oldPosition2 : CGPoint
