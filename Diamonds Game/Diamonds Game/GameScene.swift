@@ -15,7 +15,7 @@ class GameScene: SKScene {
     var diamondToJ : Int = 0
     
     var diamondsArray = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: SKSpriteNode(imageNamed: "1.png")))
-    //var diamondsArraySTT = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: -1))
+    var diamondsArraySTT = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: -1))
     func radDiamonds() -> Int {
         return Int(arc4random_uniform(5)+1)
         //return 1
@@ -41,6 +41,7 @@ class GameScene: SKScene {
             
         }
         diamondsArray[i][j].size = CGSize(width: 50, height: 40)
+        diamondsArraySTT[i][j] = x
         setPositionForDiamondsArray(i,j: j)
         addChild(diamondsArray[i][j])
 
@@ -96,6 +97,11 @@ class GameScene: SKScene {
         //3
         addChild(background)
     }
+    func checkAllowSwapOrNot(i1 : Int, j1 : Int , j1:Int , j2:Int) -> Bool{
+        var x = 1
+        
+        return true
+    }
     func swap2Diamonds(i1 : Int, j1 : Int ,i2 :Int ,j2:Int) {
         let oldPosition1 : CGPoint
         oldPosition1 = diamondsArray[i1][j1].position
@@ -116,6 +122,10 @@ class GameScene: SKScene {
         let m = diamondsArray[i2][j2]
         diamondsArray[i2][j2] = diamondsArray[i1][j1]
         diamondsArray[i1][j1] = m
+        
+        let n = diamondsArraySTT[i1][j1]
+        diamondsArraySTT[i1][j1] = diamondsArraySTT[i2][j2]
+        diamondsArraySTT[i2][j2] = n
         
         
         let moveDiamond1 = SKAction.sequence([animationSwap1, SKAction.waitForDuration(0.1)])
