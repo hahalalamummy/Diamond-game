@@ -14,11 +14,6 @@
 		93205EBE1D85079A00EF5763 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93205EBC1D85079A00EF5763 /* Main.storyboard */; };
 		93205EC01D85079A00EF5763 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93205EBF1D85079A00EF5763 /* Assets.xcassets */; };
 		93205EC31D85079A00EF5763 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93205EC11D85079A00EF5763 /* LaunchScreen.storyboard */; };
-		93205ECB1D850E4600EF5763 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 93205ECA1D850E4600EF5763 /* 1.png */; };
-		93205ECD1D850E4B00EF5763 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 93205ECC1D850E4B00EF5763 /* 2.png */; };
-		93205ECF1D850E5200EF5763 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 93205ECE1D850E5200EF5763 /* 3.png */; };
-		93205ED11D850E5D00EF5763 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 93205ED01D850E5D00EF5763 /* 4.png */; };
-		93205ED31D850E6500EF5763 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 93205ED21D850E6500EF5763 /* 5.png */; };
 		93205ED51D850F1400EF5763 /* screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93205ED41D850F1400EF5763 /* screen.jpg */; };
 		93205ED91D8512A400EF5763 /* backgroundemo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93205ED81D8512A400EF5763 /* backgroundemo.jpg */; };
 		93FF06B21D85438900D52344 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 93FF06B11D85438900D52344 /* background.png */; };
@@ -34,11 +29,6 @@
 		93205EBF1D85079A00EF5763 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93205EC21D85079A00EF5763 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93205EC41D85079A00EF5763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93205ECA1D850E4600EF5763 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		93205ECC1D850E4B00EF5763 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
-		93205ECE1D850E5200EF5763 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
-		93205ED01D850E5D00EF5763 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
-		93205ED21D850E6500EF5763 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		93205ED41D850F1400EF5763 /* screen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screen.jpg; sourceTree = "<group>"; };
 		93205ED81D8512A400EF5763 /* backgroundemo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backgroundemo.jpg; sourceTree = "<group>"; };
 		93FF06B11D85438900D52344 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -77,11 +67,6 @@
 				93FF06B11D85438900D52344 /* background.png */,
 				93205ED81D8512A400EF5763 /* backgroundemo.jpg */,
 				93205ED41D850F1400EF5763 /* screen.jpg */,
-				93205ED21D850E6500EF5763 /* 5.png */,
-				93205ED01D850E5D00EF5763 /* 4.png */,
-				93205ECE1D850E5200EF5763 /* 3.png */,
-				93205ECC1D850E4B00EF5763 /* 2.png */,
-				93205ECA1D850E4600EF5763 /* 1.png */,
 				93205EB41D85079A00EF5763 /* AppDelegate.swift */,
 				93205EB61D85079A00EF5763 /* GameScene.sks */,
 				93205EB81D85079A00EF5763 /* GameScene.swift */,
@@ -152,18 +137,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93205ECD1D850E4B00EF5763 /* 2.png in Resources */,
 				93FF06B21D85438900D52344 /* background.png in Resources */,
 				93205ED51D850F1400EF5763 /* screen.jpg in Resources */,
 				93205EB71D85079A00EF5763 /* GameScene.sks in Resources */,
 				93205EC31D85079A00EF5763 /* LaunchScreen.storyboard in Resources */,
 				93205ED91D8512A400EF5763 /* backgroundemo.jpg in Resources */,
 				93205EC01D85079A00EF5763 /* Assets.xcassets in Resources */,
-				93205ED11D850E5D00EF5763 /* 4.png in Resources */,
 				93205EBE1D85079A00EF5763 /* Main.storyboard in Resources */,
-				93205ED31D850E6500EF5763 /* 5.png in Resources */,
-				93205ECF1D850E5200EF5763 /* 3.png in Resources */,
-				93205ECB1D850E4600EF5763 /* 1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
