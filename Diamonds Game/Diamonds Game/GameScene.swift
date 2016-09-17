@@ -9,6 +9,8 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    let row=6
+    let col = 5
     var diamondChoseI : Int = 0
     var diamondChoseJ : Int = 0
     var diamondToI : Int = 0
@@ -79,7 +81,41 @@ class GameScene: SKScene {
     
     func checkLetSwapOrNot(i1 : Int , j1 : Int , i2 : Int , j2 : Int) -> Bool{
         let x = abs(i1-i2) + abs(j1-j2)
+        if (diamondsArraySTT[i1][j1] == diamondsArraySTT[i2][j2]) {return true}
         if (x <= 1) {return false} else {return true}
+    }
+    
+    func checkCanEatOrNot() -> Bool {
+        
+        var count = 0
+        //check col
+        for i in 1..<row{
+            for j in 1..<col{
+                if (diamondsArraySTT[i][j] != diamondsArraySTT[i][j-1]){
+                    count = 1
+                } else { count+=1 }
+                if (count == 3) {
+                    print(i," ",j)
+                    return true
+                    
+                }
+            }
+        }
+        
+        // check row 
+        for j in 1..<col{
+            for i in 1..<row{
+                if (diamondsArraySTT[i][j] != diamondsArraySTT[i-1][j]){
+                    count = 1
+                } else {count += 1}
+                if (count == 3) {
+                    print(i," ",j)
+                    return true
+                    
+                }
+            }
+        }
+        return false
     }
     
     func swap2Diamonds(i1 : Int, j1 : Int ,i2 :Int ,j2:Int) {
@@ -186,9 +222,14 @@ class GameScene: SKScene {
                     print("touchesEnded",i," ",j)
                     diamondToI=i;
                     diamondToJ=j;
-                    
-                    
-                    swap2Diamonds(diamondChoseI, j1: diamondChoseJ, i2: diamondToI, j2: diamondToJ)
+                   
+                    self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
+    
+                    print(checkCanEatOrNot())
+                    if (checkCanEatOrNot() == false){
+                        
+                        self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
+                    }
                     diamondChoseI=0
                     diamondChoseJ=0
                     diamondToI=0
