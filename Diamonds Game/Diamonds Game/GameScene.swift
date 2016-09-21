@@ -9,12 +9,18 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    struct locaXY {
+        var x : Int
+        var y : Int
+    }
     let row=6
     let col = 5
     var diamondChoseI : Int = 0
     var diamondChoseJ : Int = 0
     var diamondToI : Int = 0
     var diamondToJ : Int = 0
+    
+    var Q = Array(count: 300, repeatedValue: locaXY(x: -1, y: -1))
     
     var diamondsArray = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: SKSpriteNode(imageNamed: "1.png")))
     var diamondsArraySTT = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: -1))
@@ -101,6 +107,8 @@ class GameScene: SKScene {
                 }
             }
         }
+        
+        count = 0
         
         // check row 
         for j in 1..<col{
