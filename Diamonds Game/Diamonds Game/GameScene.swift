@@ -157,7 +157,7 @@ class GameScene: SKScene {
         let n = diamondsArraySTT[i1][j1]
         diamondsArraySTT[i1][j1] = diamondsArraySTT[i2][j2]
         diamondsArraySTT[i2][j2] = n
-        
+    
         
         let moveDiamond1 = SKAction.sequence([animationSwap1, SKAction.waitForDuration(0.1)])
         let moveDiamond2 = SKAction.sequence([animationSwap2, SKAction.waitForDuration(0.1)])
