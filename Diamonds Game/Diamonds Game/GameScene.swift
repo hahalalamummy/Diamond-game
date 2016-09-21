@@ -81,7 +81,7 @@ class GameScene: SKScene {
     
     func checkLetSwapOrNot(i1 : Int , j1 : Int , i2 : Int , j2 : Int) -> Bool{
         let x = abs(i1-i2) + abs(j1-j2)
-        if (diamondsArraySTT[i1][j1] == diamondsArraySTT[i2][j2]) {return true}
+        //if (diamondsArraySTT[i1][j1] == diamondsArraySTT[i2][j2]) {return true}
         if (x <= 1) {return false} else {return true}
     }
     
@@ -173,6 +173,25 @@ class GameScene: SKScene {
         
         
     }
+    
+    func playSound(i: Int){
+        let play: SKAction
+        switch i {
+        case 3:
+            // ăn 3
+            play = SKAction.playSoundFileNamed("", waitForCompletion: false)
+        case 4:
+            //ăn 4
+            play = SKAction.playSoundFileNamed("", waitForCompletion: false)
+        case 5:
+            //ăn 5
+            play = SKAction.playSoundFileNamed("", waitForCompletion: false)
+        default:
+            return
+        }
+        self.runAction(play)
+    }
+    
     override func didMoveToView(view: SKView) {
         print("didtomoveview")
         addBackground()
@@ -225,11 +244,11 @@ class GameScene: SKScene {
                    
                     self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
     
-                    print(checkCanEatOrNot())
-                    if (checkCanEatOrNot() == false){
-                        
-                        self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
-                    }
+//                    print(checkCanEatOrNot())
+//                    if (checkCanEatOrNot() == false){
+//                        
+//                        self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
+//                    }
                     diamondChoseI=0
                     diamondChoseJ=0
                     diamondToI=0
