@@ -9,10 +9,6 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    struct locaXY {
-        var x : Int
-        var y : Int
-    }
     let row=6
     let col = 5
     var diamondChoseI : Int = 0
@@ -20,11 +16,8 @@ class GameScene: SKScene {
     var diamondToI : Int = 0
     var diamondToJ : Int = 0
     
-    var Q = Array(count: 300, repeatedValue: locaXY(x: -1, y: -1))
-    
     var diamondsArray = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: SKSpriteNode(imageNamed: "1.png")))
     var diamondsArraySTT = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: -1))
-    
     func radDiamonds() -> Int {
         return Int(arc4random_uniform(5)+1)
         //return 1
@@ -108,8 +101,8 @@ class GameScene: SKScene {
                 }
             }
         }
-        count = 0
-        // check row
+        
+        // check row 
         for j in 1..<col{
             for i in 1..<row{
                 if (diamondsArraySTT[i][j] != diamondsArraySTT[i-1][j]){
@@ -125,78 +118,6 @@ class GameScene: SKScene {
         return false
     }
     
-    //afrer swaping check eat 
-    func eatDiamonds() {
-        var count = 0
-        var dau = 0
-        var cuoi = 0
-        //check col
-        for i in 1..<row{
-            for j in 1..<col{
-                if (diamondsArraySTT[i][j] != diamondsArraySTT[i][j-1]){
-                    if (count>=3) {
-                        for k in (j-count)..<j{
-                            diamondsArraySTT[i][k] = -1
-                        }
-                    }
-                    count = 1
-                } else { count += 1 }
-                
-            }
-        }
-        count = 0
-        //check row
-        for j in 1..<col{
-            for i in 1..<row{
-                if (diamondsArraySTT[i][j] != diamondsArraySTT[i][j-1]){
-                    if (count>=3) {
-                        for k in (i-count)..<i{
-                            diamondsArraySTT[k][j] = -1
-                        }
-                    }
-                    count = 1
-                } else { count += 1 }
-            }
-        }
-        count = 0
-        
-        for i in 1..<row{
-            var k = col
-            dau = 1
-            cuoi = 0
-            var xx = 0
-            var yy = 0
-            while (k>1)
-            {
-                if (diamondsArraySTT[i][k] == -1) {
-                    //count += 1
-                    cuoi += 1
-                    Q[cuoi] = locaXY(x: i, y: k)
-                } else{
-                    // count -= 1
-                    if (dau<=cuoi){
-                        swap2Diamonds(i, j1: k, i2: Q[dau].x, j2: Q[dau].y)
-                       // oldPos = locaXY(x: Q[dau].x, y: Q[dau].y-1)
-                        xx = Q[dau].x
-                        yy = Q[dau].y - 1
-                        dau += 1
-                        
-                    } else {
-//                        swap2Diamonds(i, j1: k, i2: oldPos.x, j2: oldPos.y)
-//                        oldPos = locaXY(x: oldPos.x, y: oldPos.y-1)
-                        swap2Diamonds(i, j1: k, i2: xx, j2: yy)
-                        yy -= 1
-                    }
-                    
-                }
-                k -= 1
-            }
-            
-
-        }
-        
-        
-    }
     func swap2Diamonds(i1 : Int, j1 : Int ,i2 :Int ,j2:Int) {
         //print("swap: ","{",i1,",",j1,"} ","{",i2,",",j2,"}")
         if ( checkLetSwapOrNot(i1, j1: j1, i2: i2, j2: j2) ){ return }
@@ -265,7 +186,7 @@ class GameScene: SKScene {
             
             let dxTouch = location.x
             let dyTouch = location.y
-            //print(dxTouch," ",dy`Touch)
+            //print(dxTouch," ",dyTouch)
             for i in 1..<6 {
                 for j in 1..<5 {
                     let dx = diamondsArray[i][j].position.x + 50
@@ -301,9 +222,9 @@ class GameScene: SKScene {
                     print("touchesEnded",i," ",j)
                     diamondToI=i;
                     diamondToJ=j;
-                    
+                   
                     self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
-                    
+    
                     print(checkCanEatOrNot())
                     if (checkCanEatOrNot() == false){
                         
