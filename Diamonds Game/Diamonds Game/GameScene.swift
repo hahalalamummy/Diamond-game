@@ -23,6 +23,7 @@ class GameScene: SKScene {
     var Q = Array(count: 300, repeatedValue: locaXY(x: -1, y: -1))
     
     var diamondsArray = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: SKSpriteNode(imageNamed: "1.png")))
+    
     var diamondsArraySTT = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: -1))
     func radDiamonds() -> Int {
         return Int(arc4random_uniform(5)+1)
@@ -128,15 +129,16 @@ class GameScene: SKScene {
     
     //afrer swaping check eat
     func eatDiamonds() {
-        var count = 0
+        var count = 1
         var dau = 0
         var cuoi = 0
         //check col
         for i in 1..<row{
-            for j in 1..<col{
+            for j in 2..<col+1{
                 if (diamondsArraySTT[i][j] != diamondsArraySTT[i][j-1]){
                     if (count>=3) {
                         for k in (j-count)..<j{
+                            // delete [i][k]
                             diamondsArraySTT[i][k] = -1
                         }
                     }
@@ -145,13 +147,14 @@ class GameScene: SKScene {
                 
             }
         }
-        count = 0
+        count = 1
         //check row
         for j in 1..<col{
-            for i in 1..<row{
-                if (diamondsArraySTT[i][j] != diamondsArraySTT[i][j-1]){
+            for i in 2..<row{
+                if (diamondsArraySTT[i][j] != diamondsArraySTT[i-1][j]){
                     if (count>=3) {
                         for k in (i-count)..<i{
+                            // delete [k][j]
                             diamondsArraySTT[k][j] = -1
                         }
                     }
@@ -161,40 +164,48 @@ class GameScene: SKScene {
         }
         count = 0
         
-        for i in 1..<row{
-            var k = col
-            dau = 1
-            cuoi = 0
-            var xx = 0
-            var yy = 0
-            while (k>1)
-            {
-                if (diamondsArraySTT[i][k] == -1) {
-                    //count += 1
-                    cuoi += 1
-                    Q[cuoi] = locaXY(x: i, y: k)
-                } else{
-                    // count -= 1
-                    if (dau<=cuoi){
-                        swap2Diamonds(i, j1: k, i2: Q[dau].x, j2: Q[dau].y)
-                        // oldPos = locaXY(x: Q[dau].x, y: Q[dau].y-1)
-                        xx = Q[dau].x
-                        yy = Q[dau].y - 1
-                        dau += 1
-                        
-                    } else {
-                        //                        swap2Diamonds(i, j1: k, i2: oldPos.x, j2: oldPos.y)
-                        //                        oldPos = locaXY(x: oldPos.x, y: oldPos.y-1)
-                        swap2Diamonds(i, j1: k, i2: xx, j2: yy)
-                        yy -= 1
-                    }
-                    
+        for i in 1..<row {
+            for j in 1..<col {
+                if diamondsArraySTT[i][j] == -1 {
+                    diamondsArray[i][j].removeFromParent()
                 }
-                k -= 1
             }
-            
-            
         }
+        
+//        for i in 1..<row{
+//            var k = col
+//            dau = 1
+//            cuoi = 0
+//            var xx = 0
+//            var yy = 0
+//            while (k>1)
+//            {
+//                if (diamondsArraySTT[i][k] == -1) {
+//                    //count += 1
+//                    cuoi += 1
+//                    Q[cuoi] = locaXY(x: i, y: k)
+//                } else{
+//                    // count -= 1
+//                    if (dau<=cuoi){
+//                        swap2Diamonds(i, j1: k, i2: Q[dau].x, j2: Q[dau].y)
+//                        // oldPos = locaXY(x: Q[dau].x, y: Q[dau].y-1)
+//                        xx = Q[dau].x
+//                        yy = Q[dau].y - 1
+//                        dau += 1
+//                        
+//                    } else {
+//                        //                        swap2Diamonds(i, j1: k, i2: oldPos.x, j2: oldPos.y)
+//                        //                        oldPos = locaXY(x: oldPos.x, y: oldPos.y-1)
+//                        swap2Diamonds(i, j1: k, i2: xx, j2: yy)
+//                        yy -= 1
+//                    }
+//                    
+//                }
+//                k -= 1
+//            }
+//            
+//            
+//        }
         
         
     }
@@ -240,8 +251,8 @@ class GameScene: SKScene {
         diamondsArraySTT[i2][j2] = n
         
         
-        let moveDiamond1 = SKAction.sequence([animationSwap1, SKAction.waitForDuration(0.1)])
-        let moveDiamond2 = SKAction.sequence([animationSwap2, SKAction.waitForDuration(0.1)])
+        let moveDiamond1 = SKAction.sequence([animationSwap1, SKAction.waitForDuration(0)])
+        let moveDiamond2 = SKAction.sequence([animationSwap2, SKAction.waitForDuration(0)])
         
         self.runAction(moveDiamond1)
         self.runAction(moveDiamond2)
@@ -324,7 +335,9 @@ class GameScene: SKScene {
                     diamondToJ=j;
                    
                     self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
-    
+                    
+                    eatDiamonds()
+                    
 //                    print(checkCanEatOrNot())
 //                    if (checkCanEatOrNot() == false){
 //                        
@@ -341,7 +354,8 @@ class GameScene: SKScene {
         
     }
     
-    //    override func update(currentTime: CFTimeInterval) {
-    //        /* Called before each frame is rendered */
-    //    }
+    override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
+        
+    }
 }
