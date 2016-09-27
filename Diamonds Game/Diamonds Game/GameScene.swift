@@ -256,13 +256,13 @@ class GameScene: SKScene {
         //print("diamond1 move")
         let animationSwap1 = SKAction.runBlock{
             let diamondMove = SKAction.moveTo(oldPosition1, duration: 0.3)
-            self.diamondsArray[i1][j1].runAction(SKAction.repeatActionForever(diamondMove))
+            self.diamondsArray[i1][j1].runAction(diamondMove)
         }
         
         //print("diamond2 move")
         let animationSwap2 = SKAction.runBlock{
             let diamondMove = SKAction.moveTo(oldPosition2, duration: 0.3)
-            self.diamondsArray[i2][j2].runAction(SKAction.repeatActionForever(diamondMove))
+            self.diamondsArray[i2][j2].runAction(diamondMove)
         }
         
         let n = diamondsArraySTT[i1][j1]
