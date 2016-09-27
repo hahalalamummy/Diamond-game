@@ -108,7 +108,7 @@ class GameScene: SKScene {
     func checkLetSwapOrNot(i1 : Int , j1 : Int , i2 : Int , j2 : Int) -> Bool{
         let x = abs(i1-i2) + abs(j1-j2)
         //if (diamondsArraySTT[i1][j1] == diamondsArraySTT[i2][j2]) {return true}
-        if (x <= 1) {return false} else {return true}
+        if (x <= 1) {return true} else {return false}
     }
     
     func checkCanEatOrNot() -> Bool {
@@ -116,10 +116,12 @@ class GameScene: SKScene {
         var count = 0
         //check col
         for i in 1..<row{
+            count = 0
             for j in 1..<col{
-                if (diamondsArraySTT[i][j] != diamondsArraySTT[i][j-1]){
-                    count = 1
-                } else { count+=1 }
+                if (diamondsArraySTT[i][j] == diamondsArraySTT[i][j-1] && diamondsArraySTT[i][j] != -1){
+                    count += 1
+                } else { count = 1 }
+                
                 if (count >= 3) {
                     print(i," ",j)
                     return true
@@ -128,14 +130,14 @@ class GameScene: SKScene {
             }
         }
         
-        count = 0
         
         // check row 
         for j in 1..<col{
+            count = 0
             for i in 1..<row{
-                if (diamondsArraySTT[i][j] != diamondsArraySTT[i-1][j]){
-                    count = 1
-                } else {count += 1}
+                if (diamondsArraySTT[i][j] == diamondsArraySTT[i-1][j] && diamondsArraySTT[i][j] != -1){
+                    count += 1
+                } else { count = 1 }
                 if (count >= 3) {
                     print(i," ",j)
                     return true
@@ -153,6 +155,7 @@ class GameScene: SKScene {
         var cuoi = 0
         //check col
         for i in 1..<row{
+            count = 1
             for j in 2..<col+1{
                 if (diamondsArraySTT[i][j] != diamondsArraySTT[i][j-1]){
                     if (count>=3) {
@@ -166,9 +169,10 @@ class GameScene: SKScene {
                 
             }
         }
-        count = 1
+        
         //check row
         for j in 1..<col{
+            count = 1
             for i in 2..<row{
                 if (diamondsArraySTT[i][j] != diamondsArraySTT[i-1][j]){
                     if (count>=3) {
@@ -231,7 +235,7 @@ class GameScene: SKScene {
     
     func swap2Diamonds(i1 : Int, j1 : Int ,i2 :Int ,j2:Int) {
         //print("swap: ","{",i1,",",j1,"} ","{",i2,",",j2,"}")
-        if ( checkLetSwapOrNot(i1, j1: j1, i2: i2, j2: j2) ){ return }
+//        if ( checkLetSwapOrNot(i1, j1: j1, i2: i2, j2: j2) ){ return }
         
         
         //print("1 position: ", diamondsArray[i1][j1].position.x," ", diamondsArray[i1][j1].position.y)
@@ -265,9 +269,9 @@ class GameScene: SKScene {
             self.diamondsArray[i2][j2].runAction(diamondMove)
         }
         
-        let n = diamondsArraySTT[i1][j1]
-        diamondsArraySTT[i1][j1] = diamondsArraySTT[i2][j2]
-        diamondsArraySTT[i2][j2] = n
+//        let n = diamondsArraySTT[i1][j1]
+//        diamondsArraySTT[i1][j1] = diamondsArraySTT[i2][j2]
+//        diamondsArraySTT[i2][j2] = n
         
         
         
@@ -334,6 +338,37 @@ class GameScene: SKScene {
         }
     }
     
+    func run() {
+        if checkLetSwapOrNot(diamondChoseI, j1: diamondChoseJ, i2: diamondToI, j2: diamondToJ) {
+            let m = diamondsArraySTT[diamondChoseI][diamondChoseJ]
+            diamondsArraySTT[diamondChoseI][diamondChoseJ] = diamondsArraySTT[diamondToI][diamondToJ]
+            diamondsArraySTT[diamondToI][diamondToJ] = m
+            
+            if checkCanEatOrNot() {
+                let swap = SKAction.runBlock{
+                    self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
+                }
+                //self.runAction(swap)
+                let delete = SKAction.runBlock{
+                    self.eatDiamonds()
+                }
+                self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),delete]))
+            }
+            else {
+                let swap = SKAction.runBlock{
+                    self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
+                }
+                let swapBack = SKAction.runBlock{
+                    self.swap2Diamonds(self.diamondToI, j1: self.diamondToJ, i2: self.diamondChoseI, j2: self.diamondChoseJ)
+                }
+                self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),swapBack]))
+                let m = diamondsArraySTT[diamondChoseI][diamondChoseJ]
+                diamondsArraySTT[diamondChoseI][diamondChoseJ] = diamondsArraySTT[diamondToI][diamondToJ]
+                diamondsArraySTT[diamondToI][diamondToJ] = m
+            }
+        }
+    }
+    
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let location = touch!.locationInNode(self)
@@ -352,20 +387,7 @@ class GameScene: SKScene {
                     diamondToI=i;
                     diamondToJ=j;
                     
-                    
-                    self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
-                    print(checkCanEatOrNot())
-//                    if checkCanEatOrNot() == false {
-//                        self.swap2Diamonds(self.diamondToI, j1: self.diamondToJ, i2: self.diamondChoseI, j2: self.diamondChoseJ)
-//                    }
-                    eatDiamonds()
-                    
-//                    print(checkCanEatOrNot())
-//                    if (checkCanEatOrNot() == false){
-//                        
-//                        self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
-//                    }
-                    
+                    run()
                     return
                 }
             }
