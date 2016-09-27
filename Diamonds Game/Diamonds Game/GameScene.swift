@@ -86,6 +86,25 @@ class GameScene: SKScene {
         addChild(background)
     }
     
+    override func didMoveToView(view: SKView) {
+        print("didtomoveview")
+        addBackground()
+        makeArray()
+    }
+    
+    
+    
+    
+    
+    //-----------------------------------------------------------------------//
+    
+    
+    
+    
+    
+    
+    
+    
     func checkLetSwapOrNot(i1 : Int , j1 : Int , i2 : Int , j2 : Int) -> Bool{
         let x = abs(i1-i2) + abs(j1-j2)
         //if (diamondsArraySTT[i1][j1] == diamondsArraySTT[i2][j2]) {return true}
@@ -101,7 +120,7 @@ class GameScene: SKScene {
                 if (diamondsArraySTT[i][j] != diamondsArraySTT[i][j-1]){
                     count = 1
                 } else { count+=1 }
-                if (count == 3) {
+                if (count >= 3) {
                     print(i," ",j)
                     return true
                     
@@ -117,7 +136,7 @@ class GameScene: SKScene {
                 if (diamondsArraySTT[i][j] != diamondsArraySTT[i-1][j]){
                     count = 1
                 } else {count += 1}
-                if (count == 3) {
+                if (count >= 3) {
                     print(i," ",j)
                     return true
                     
@@ -251,11 +270,9 @@ class GameScene: SKScene {
         diamondsArraySTT[i2][j2] = n
         
         
-        let moveDiamond1 = SKAction.sequence([animationSwap1, SKAction.waitForDuration(0)])
-        let moveDiamond2 = SKAction.sequence([animationSwap2, SKAction.waitForDuration(0)])
         
-        self.runAction(moveDiamond1)
-        self.runAction(moveDiamond2)
+        self.runAction(animationSwap1)
+        self.runAction(animationSwap2)
         //print("1 position: ", diamondsArray[i1][j1].position.x," ", diamondsArray[i1][j1].position.y)
         //print("2 position: ", diamondsArray[i2][j2].position.x," ", diamondsArray[i2][j2].position.y)
         //        diamondsArray[i1][j1].removeFromParent()
@@ -284,14 +301,15 @@ class GameScene: SKScene {
         self.runAction(play)
     }
     
-    override func didMoveToView(view: SKView) {
-        print("didtomoveview")
-        addBackground()
-        makeArray()
-    }
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
+        diamondChoseI=0
+        diamondChoseJ=0
+        diamondToI=0
+        diamondToJ=0
+        
         for touch in touches {
             let location = touch.locationInNode(self)
             
@@ -333,9 +351,13 @@ class GameScene: SKScene {
                     print("touchesEnded",i," ",j)
                     diamondToI=i;
                     diamondToJ=j;
-                   
-                    self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
                     
+                    
+                    self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
+                    print(checkCanEatOrNot())
+//                    if checkCanEatOrNot() == false {
+//                        self.swap2Diamonds(self.diamondToI, j1: self.diamondToJ, i2: self.diamondChoseI, j2: self.diamondChoseJ)
+//                    }
                     eatDiamonds()
                     
 //                    print(checkCanEatOrNot())
@@ -343,10 +365,7 @@ class GameScene: SKScene {
 //                        
 //                        self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
 //                    }
-                    diamondChoseI=0
-                    diamondChoseJ=0
-                    diamondToI=0
-                    diamondToJ=0
+                    
                     return
                 }
             }
