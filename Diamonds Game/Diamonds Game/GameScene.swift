@@ -93,6 +93,8 @@ class GameScene: SKScene {
         if checkCanEatOrNot() {
             eatDiamonds()
         }
+        let actions = [SKAction.waitForDuration(3),SKAction.fadeOutWithDuration(0.3), SKAction.waitForDuration(3), SKAction.fadeInWithDuration(0.5)]
+        self.diamondsArray[2][2].runAction(SKAction.sequence(actions))
     }
     
     
@@ -176,7 +178,7 @@ class GameScene: SKScene {
         //check row
         for j in 1..<col{
             count = 1
-            for i in 2..<row{
+            for i in 2..<row+1{
                 if (diamondsArraySTT[i][j] != diamondsArraySTT[i-1][j]){
                     if (count>=3) {
                         for k in (i-count)..<i{
@@ -380,7 +382,7 @@ class GameScene: SKScene {
                 let drop = SKAction.runBlock{
                     self.dropDiamond()
                 }
-                self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),delete,SKAction.waitForDuration(0.32),drop]))
+                self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),delete,SKAction.waitForDuration(3),drop]))
             }
             else {
                 let swap = SKAction.runBlock{
@@ -423,8 +425,8 @@ class GameScene: SKScene {
         
     }
     
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
-        
-    }
+//    override func update(currentTime: CFTimeInterval) {
+//        /* Called before each frame is rendered */
+//        
+//    }
 }
