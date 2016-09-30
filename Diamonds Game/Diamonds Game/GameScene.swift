@@ -93,8 +93,6 @@ class GameScene: SKScene {
         if checkCanEatOrNot() {
             eatDiamonds()
         }
-        let actions = [SKAction.waitForDuration(3),SKAction.fadeOutWithDuration(0.3), SKAction.waitForDuration(3), SKAction.fadeInWithDuration(0.5)]
-        self.diamondsArray[2][2].runAction(SKAction.sequence(actions))
     }
     
     
