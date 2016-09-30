@@ -29,8 +29,8 @@ class GameScene: SKScene {
         return Int(arc4random_uniform(5)+1)
         //return 1
     }
-    func setDiamonds(i : Int ,j : Int , x:Int) {
-        
+    func setDiamonds(i : Int ,j : Int) {
+        let x=radDiamonds()
         switch x {
         case 1:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "1")
@@ -48,8 +48,6 @@ class GameScene: SKScene {
         }
         diamondsArray[i][j].size = CGSize(width: 50, height: 40)
         diamondsArraySTT[i][j] = x
-        setPositionForDiamondsArray(i,j: j)
-        addChild(diamondsArray[i][j])
     }
     
     func makeArray(){
@@ -57,9 +55,11 @@ class GameScene: SKScene {
         {
             for j in 1..<5
             {
-                let x=radDiamonds()
+                
                 //diamondsArraySTT[i][j]  =   x
-                setDiamonds(i, j: j, x: x)
+                setDiamonds(i, j: j)
+                setPositionForDiamondsArray(i,j: j)
+                addChild(diamondsArray[i][j])
             }
         }
     }
@@ -90,6 +90,9 @@ class GameScene: SKScene {
         print("didtomoveview")
         addBackground()
         makeArray()
+        if checkCanEatOrNot() {
+            eatDiamonds()
+        }
     }
     
     
@@ -190,7 +193,9 @@ class GameScene: SKScene {
         for i in 1..<row {
             for j in 1..<col {
                 if diamondsArraySTT[i][j] == -1 {
-                    diamondsArray[i][j].removeFromParent()
+                    //diamondsArray[i][j].removeFromParent()
+                    //diamondsArray[i][j].runAction(SKAction.hide())
+                    diamondsArray[i][j].runAction(SKAction.fadeOutWithDuration(0.3))
                 }
             }
         }
@@ -287,6 +292,26 @@ class GameScene: SKScene {
         
     }
     
+    func dropDiamond() {
+        var count = 0
+        for j in 1..<col {
+            count = 0
+            for i in 1..<row {
+                if diamondsArraySTT[i][j] == -1 {
+                    //swap lên đỉnh
+                }
+            }
+        }
+        for i in 1..<row {
+            for j in 1..<col {
+                if diamondsArraySTT[i][j] == -1 {
+                    setDiamonds(i, j: j)
+                    diamondsArray[i][j].runAction(SKAction.fadeInWithDuration(0.3))
+                }
+            }
+        }
+    }
+    
     func playSound(i: Int){
         let play: SKAction
         switch i {
@@ -352,7 +377,10 @@ class GameScene: SKScene {
                 let delete = SKAction.runBlock{
                     self.eatDiamonds()
                 }
-                self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),delete]))
+                let drop = SKAction.runBlock{
+                    self.dropDiamond()
+                }
+                self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),delete,SKAction.waitForDuration(0.32),drop]))
             }
             else {
                 let swap = SKAction.runBlock{
