@@ -14,11 +14,9 @@
 		93205EBE1D85079A00EF5763 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93205EBC1D85079A00EF5763 /* Main.storyboard */; };
 		93205EC01D85079A00EF5763 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93205EBF1D85079A00EF5763 /* Assets.xcassets */; };
 		93205EC31D85079A00EF5763 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93205EC11D85079A00EF5763 /* LaunchScreen.storyboard */; };
-		93205ED51D850F1400EF5763 /* screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93205ED41D850F1400EF5763 /* screen.jpg */; };
-		93205ED91D8512A400EF5763 /* backgroundemo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93205ED81D8512A400EF5763 /* backgroundemo.jpg */; };
+		932917581DA070D700AE5CF4 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932917571DA070D700AE5CF4 /* GameOver.swift */; };
 		93F231AE1DA05A8B000A8A65 /* Chomp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 93F231AD1DA05A8B000A8A65 /* Chomp.wav */; };
 		93F231B01DA05A9D000A8A65 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93F231AF1DA05A9D000A8A65 /* Mining by Moonlight.mp3 */; };
-		93FF06B21D85438900D52344 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 93FF06B11D85438900D52344 /* background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,11 +29,9 @@
 		93205EBF1D85079A00EF5763 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93205EC21D85079A00EF5763 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93205EC41D85079A00EF5763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93205ED41D850F1400EF5763 /* screen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screen.jpg; sourceTree = "<group>"; };
-		93205ED81D8512A400EF5763 /* backgroundemo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backgroundemo.jpg; sourceTree = "<group>"; };
+		932917571DA070D700AE5CF4 /* GameOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
 		93F231AD1DA05A8B000A8A65 /* Chomp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Chomp.wav; sourceTree = "<group>"; };
 		93F231AF1DA05A9D000A8A65 /* Mining by Moonlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mining by Moonlight.mp3"; sourceTree = "<group>"; };
-		93FF06B11D85438900D52344 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,9 +64,6 @@
 		93205EB31D85079900EF5763 /* Diamonds Game */ = {
 			isa = PBXGroup;
 			children = (
-				93FF06B11D85438900D52344 /* background.png */,
-				93205ED81D8512A400EF5763 /* backgroundemo.jpg */,
-				93205ED41D850F1400EF5763 /* screen.jpg */,
 				93F231AD1DA05A8B000A8A65 /* Chomp.wav */,
 				93F231AF1DA05A9D000A8A65 /* Mining by Moonlight.mp3 */,
 				93205EB41D85079A00EF5763 /* AppDelegate.swift */,
@@ -81,6 +74,7 @@
 				93205EBF1D85079A00EF5763 /* Assets.xcassets */,
 				93205EC11D85079A00EF5763 /* LaunchScreen.storyboard */,
 				93205EC41D85079A00EF5763 /* Info.plist */,
+				932917571DA070D700AE5CF4 /* GameOver.swift */,
 			);
 			path = "Diamonds Game";
 			sourceTree = "<group>";
@@ -143,13 +137,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93FF06B21D85438900D52344 /* background.png in Resources */,
 				93F231B01DA05A9D000A8A65 /* Mining by Moonlight.mp3 in Resources */,
-				93205ED51D850F1400EF5763 /* screen.jpg in Resources */,
 				93205EB71D85079A00EF5763 /* GameScene.sks in Resources */,
 				93205EC31D85079A00EF5763 /* LaunchScreen.storyboard in Resources */,
 				93F231AE1DA05A8B000A8A65 /* Chomp.wav in Resources */,
-				93205ED91D8512A400EF5763 /* backgroundemo.jpg in Resources */,
 				93205EC01D85079A00EF5763 /* Assets.xcassets in Resources */,
 				93205EBE1D85079A00EF5763 /* Main.storyboard in Resources */,
 			);
@@ -165,6 +156,7 @@
 				93205EB91D85079A00EF5763 /* GameScene.swift in Sources */,
 				93205EBB1D85079A00EF5763 /* GameViewController.swift in Sources */,
 				93205EB51D85079A00EF5763 /* AppDelegate.swift in Sources */,
+				932917581DA070D700AE5CF4 /* GameOver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

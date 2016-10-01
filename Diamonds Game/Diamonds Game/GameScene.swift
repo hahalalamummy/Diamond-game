@@ -38,45 +38,45 @@ class GameScene: SKScene {
         switch x {
         case 1:
             diamondsArray[i][j].texture = SKTexture(imageNamed: i1)
-      
+            
         case 2:
             diamondsArray[i][j].texture = SKTexture(imageNamed: i2)
-
+            
         case 3:
             diamondsArray[i][j].texture = SKTexture(imageNamed: i3)
-
+            
         case 4:
             diamondsArray[i][j].texture = SKTexture(imageNamed: i4)
-
+            
         case 5:
             diamondsArray[i][j].texture = SKTexture(imageNamed: i5)
-   
+            
         default: print(0)
             
             
         }
-
+        
     }
     func setDiamonds(i : Int ,j : Int) {
         let x=radDiamonds()
-      // setImageOfDiamonds(x, i: i, j: j, i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
+        // setImageOfDiamonds(x, i: i, j: j, i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
         
         switch x {
         case 1:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "1")
-            //diamondsArray[i][j].texture = SKTexture(imageNamed: "1")
+        //diamondsArray[i][j].texture = SKTexture(imageNamed: "1")
         case 2:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "2")
-            //diamondsArray[i][j].texture = SKTexture(imageNamed: "2")
+        //diamondsArray[i][j].texture = SKTexture(imageNamed: "2")
         case 3:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "3")
-            //diamondsArray[i][j].texture = SKTexture(imageNamed: "3")
+        //diamondsArray[i][j].texture = SKTexture(imageNamed: "3")
         case 4:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "4")
-            //diamondsArray[i][j].texture = SKTexture(imageNamed: "4")
+        //diamondsArray[i][j].texture = SKTexture(imageNamed: "4")
         case 5:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "5")
-            //diamondsArray[i][j].texture = SKTexture(imageNamed: "5")
+        //diamondsArray[i][j].texture = SKTexture(imageNamed: "5")
         default: print(0)
             
             
@@ -98,17 +98,17 @@ class GameScene: SKScene {
             }
         }
         
-//        for i in 1..<6
-//        {
-//            for j in 1..<5
-//            {
-//                
-//                //diamondsArraySTT[i][j]  =   x
-//                setDiamonds(i, j: j)
-//                setPositionForDiamondsArray(i,j: j)
-//                //addChild(diamondsArray[i][j])
-//            }
-//        }
+        //        for i in 1..<6
+        //        {
+        //            for j in 1..<5
+        //            {
+        //
+        //                //diamondsArraySTT[i][j]  =   x
+        //                setDiamonds(i, j: j)
+        //                setPositionForDiamondsArray(i,j: j)
+        //                //addChild(diamondsArray[i][j])
+        //            }
+        //        }
     }
     
     
@@ -136,15 +136,79 @@ class GameScene: SKScene {
     
     var scoreLabel: SKLabelNode!
     
-    func addLabel()  {
+    func addLabelScore()  {
         scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
         scoreLabel.text = "Score: 0"
-        scoreLabel.horizontalAlignmentMode = .Right
-        scoreLabel.position = CGPoint(x:self.size.width-30, y:self.size.height-30)
+        scoreLabel.horizontalAlignmentMode = .Left
+        scoreLabel.position = CGPoint(x:10 , y:self.size.height-30)
         scoreLabel.fontColor = UIColor.blackColor()
+        scoreLabel.fontSize = 23
         addChild(scoreLabel)
+        
+        
+    }
+    //timer
+    
+    var timer = NSTimer()
+    var counter:Int = -1
+    var timeLabel : SKLabelNode!
+    var previousScore : Int = -1
+    
+    func startTimer()
+    {
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0
+            , target: self, selector: #selector(GameScene.updateTimer(_:)), userInfo: nil, repeats: true)
+    }
+    
+    func updateTimer(dt:NSTimer)
+    {
+        counter -= 1
+        if (counter == -1) {
+            previousScore = score
+            counter = 10
+        }
+        if (score > previousScore){
+            previousScore = score
+            counter = 10
+        }
+        
+        if counter==0{
+            
+            timer.invalidate()
+            removeCountDownTimerView()
+            
+            var labelGameOver = UILabel(frame: CGRectMake(0, 0, 400, 31))
+            labelGameOver.center = CGPointMake(160, 284)
+            labelGameOver.textAlignment = NSTextAlignment.Center
+            labelGameOver.text = "Game Over"
+            labelGameOver.font = labelGameOver.font.fontWithSize(40)
+            labelGameOver.textColor = UIColor.redColor()
+
+            self.view!.addSubview(labelGameOver)
+            
+        } else{
+            
+            timeLabel.text = "Time : " + "\(counter)"
+        }
+    }
+    
+    func removeCountDownTimerView()
+    {
+        scene!.view!.paused = true
+    }
     
     
+    
+    
+    
+    func addLabelTimer()  {
+        timeLabel = SKLabelNode(fontNamed: "Chalkduster")
+        timeLabel.text = "Time : 60"
+        timeLabel.horizontalAlignmentMode = .Right
+        timeLabel.position = CGPoint(x:self.size.width-10, y:self.size.height-30)
+        timeLabel.fontColor = UIColor.blackColor()
+        timeLabel.fontSize = 23
+        addChild(timeLabel)
     }
     
     func playBackGroundMusic() {
@@ -157,8 +221,10 @@ class GameScene: SKScene {
         print("didtomoveview")
         addBackground()
         makeArray()
-        addLabel()
+        addLabelScore()
+        addLabelTimer()
         playBackGroundMusic()
+        startTimer()
     }
     
     
@@ -166,7 +232,7 @@ class GameScene: SKScene {
     
     
     //-----------------------------------------------------------------------//
-
+    
     
     
     
@@ -192,7 +258,7 @@ class GameScene: SKScene {
                 } else { count = 1 }
                 
                 if (count >= 3) {
-                 //   print(i," ",j)
+                    //   print(i," ",j)
                     return true
                     
                 }
@@ -200,7 +266,7 @@ class GameScene: SKScene {
         }
         
         
-        // check row 
+        // check row
         for j in 1..<col{
             count = 0
             for i in 1..<row{
@@ -208,7 +274,7 @@ class GameScene: SKScene {
                     count += 1
                 } else { count = 1 }
                 if (count >= 3) {
-                   // print(i," ",j)
+                    // print(i," ",j)
                     return true
                     
                 }
@@ -230,15 +296,15 @@ class GameScene: SKScene {
                             diamondsArraySTT[i][k] = -1
                             
                             //print("score : " , score)
-//                            print("okWhenTouchBegan : ", okWhenTouchBegan)
-//                            print(i, " " ,j)
-//                            print(1)
+                            //                            print("okWhenTouchBegan : ", okWhenTouchBegan)
+                            //                            print(i, " " ,j)
+                            //                            print(1)
                         }
                         okWhenTouchBegan += 1
                         score += (count-2) * okWhenTouchBegan
                         print("score : ", score)
                         print("okWhenTouchBegan : " , okWhenTouchBegan)
-                      //  print(i, " " ,j)
+                        //  print(i, " " ,j)
                         print("count: ",count )
                     }
                     count = 1
@@ -256,17 +322,17 @@ class GameScene: SKScene {
                         for k in (i-count)..<i{
                             // delete [k][j]
                             diamondsArraySTT[k][j] = -1
-                                                        //print("score : ", score)
-//                            print("okWhenTouchBegan : " , okWhenTouchBegan)
-//                            print(i, " " ,j)
-//                            print(2)
+                            //print("score : ", score)
+                            //                            print("okWhenTouchBegan : " , okWhenTouchBegan)
+                            //                            print(i, " " ,j)
+                            //                            print(2)
                         }
                         okWhenTouchBegan += 1
                         score += (count-2) * okWhenTouchBegan
                         print("score : ", score)
                         print("okWhenTouchBegan : " , okWhenTouchBegan)
                         print("count: ",count )
-
+                        
                     }
                     count = 1
                 } else { count += 1 }
@@ -276,9 +342,9 @@ class GameScene: SKScene {
     
     //afrer swaping check eat
     func eatDiamonds() {
-//        
-//        var dau = 0
-//        var cuoi = 0
+        //
+        //        var dau = 0
+        //        var cuoi = 0
         
         for i in 1..<row {
             for j in 1..<col {
@@ -290,56 +356,56 @@ class GameScene: SKScene {
             }
         }
         
-//        for i in 1..<row{
-//            var k = col
-//            dau = 1
-//            cuoi = 0
-//            var xx = 0
-//            var yy = 0
-//            while (k>1)
-//            {
-//                if (diamondsArraySTT[i][k] == -1) {
-//                    //count += 1
-//                    cuoi += 1
-//                    Q[cuoi] = locaXY(x: i, y: k)
-//                } else{
-//                    // count -= 1
-//                    if (dau<=cuoi){
-//                        swap2Diamonds(i, j1: k, i2: Q[dau].x, j2: Q[dau].y)
-//                        // oldPos = locaXY(x: Q[dau].x, y: Q[dau].y-1)
-//                        xx = Q[dau].x
-//                        yy = Q[dau].y - 1
-//                        dau += 1
-//                        
-//                    } else {
-//                        //                        swap2Diamonds(i, j1: k, i2: oldPos.x, j2: oldPos.y)
-//                        //                        oldPos = locaXY(x: oldPos.x, y: oldPos.y-1)
-//                        swap2Diamonds(i, j1: k, i2: xx, j2: yy)
-//                        yy -= 1
-//                    }
-//                    
-//                }
-//                k -= 1
-//            }
-//            
-//            
-//        }
+        //        for i in 1..<row{
+        //            var k = col
+        //            dau = 1
+        //            cuoi = 0
+        //            var xx = 0
+        //            var yy = 0
+        //            while (k>1)
+        //            {
+        //                if (diamondsArraySTT[i][k] == -1) {
+        //                    //count += 1
+        //                    cuoi += 1
+        //                    Q[cuoi] = locaXY(x: i, y: k)
+        //                } else{
+        //                    // count -= 1
+        //                    if (dau<=cuoi){
+        //                        swap2Diamonds(i, j1: k, i2: Q[dau].x, j2: Q[dau].y)
+        //                        // oldPos = locaXY(x: Q[dau].x, y: Q[dau].y-1)
+        //                        xx = Q[dau].x
+        //                        yy = Q[dau].y - 1
+        //                        dau += 1
+        //
+        //                    } else {
+        //                        //                        swap2Diamonds(i, j1: k, i2: oldPos.x, j2: oldPos.y)
+        //                        //                        oldPos = locaXY(x: oldPos.x, y: oldPos.y-1)
+        //                        swap2Diamonds(i, j1: k, i2: xx, j2: yy)
+        //                        yy -= 1
+        //                    }
+        //
+        //                }
+        //                k -= 1
+        //            }
+        //
+        //
+        //        }
         
         
     }
     
     func swap2Diamonds(i1 : Int, j1 : Int ,i2 :Int ,j2:Int) {
         //print("swap: ","{",i1,",",j1,"} ","{",i2,",",j2,"}")
-//        if ( checkLetSwapOrNot(i1, j1: j1, i2: i2, j2: j2) ){ return }
+        //        if ( checkLetSwapOrNot(i1, j1: j1, i2: i2, j2: j2) ){ return }
         
         
         //print("1 position: ", diamondsArray[i1][j1].position.x," ", diamondsArray[i1][j1].position.y)
         //print("2 position: ", diamondsArray[i2][j2].position.x," ", diamondsArray[i2][j2].position.y)
         
-//        let oldPosition1 : CGPoint
-//        oldPosition1 = diamondsArray[i1][j1].position
-//        let oldPosition2 : CGPoint
-//        oldPosition2 = diamondsArray[i2][j2].position
+        //        let oldPosition1 : CGPoint
+        //        oldPosition1 = diamondsArray[i1][j1].position
+        //        let oldPosition2 : CGPoint
+        //        oldPosition2 = diamondsArray[i2][j2].position
         //print("old position 1: ", oldPosition1)
         //print("old position 2: ", oldPosition2)
         
@@ -396,27 +462,27 @@ class GameScene: SKScene {
     func changeDiamonds(i : Int ,j : Int) {
         let x=radDiamonds()
         setImageOfDiamonds(x, i: i, j: j, i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
-
-//        switch x {
-//        case 1:
-//            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "1")
-//            diamondsArray[i][j].texture = SKTexture(imageNamed: "1")
-//        case 2:
-//            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "2")
-//            diamondsArray[i][j].texture = SKTexture(imageNamed: "2")
-//        case 3:
-//            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "3")
-//            diamondsArray[i][j].texture = SKTexture(imageNamed: "3")
-//        case 4:
-//            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "4")
-//            diamondsArray[i][j].texture = SKTexture(imageNamed: "4")
-//        case 5:
-//            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "5")
-//            diamondsArray[i][j].texture = SKTexture(imageNamed: "5")
-//        default: print(0)
-//            
-//            
-//        }
+        
+        //        switch x {
+        //        case 1:
+        //            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "1")
+        //            diamondsArray[i][j].texture = SKTexture(imageNamed: "1")
+        //        case 2:
+        //            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "2")
+        //            diamondsArray[i][j].texture = SKTexture(imageNamed: "2")
+        //        case 3:
+        //            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "3")
+        //            diamondsArray[i][j].texture = SKTexture(imageNamed: "3")
+        //        case 4:
+        //            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "4")
+        //            diamondsArray[i][j].texture = SKTexture(imageNamed: "4")
+        //        case 5:
+        //            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "5")
+        //            diamondsArray[i][j].texture = SKTexture(imageNamed: "5")
+        //        default: print(0)
+        //
+        //
+        //        }
         diamondsArray[i][j].size = CGSize(width: 50, height: 40)
         diamondsArraySTT[i][j] = x
     }
@@ -430,13 +496,13 @@ class GameScene: SKScene {
     func changeDiamondsFromNormalToHighlighted(i : Int , j : Int)  {
         let x = diamondsArraySTT[i][j]
         setImageOfDiamonds(x, i: i, j: j, i1: "1hl", i2: "2hl", i3: "3hl", i4: "4hl", i5: "5hl")
-
+        
     }
     
     func changeDiamondsFormHighlightedToNormal(i : Int , j :Int)  {
         let x = diamondsArraySTT[i][j]
         setImageOfDiamonds(x, i: i, j: j, i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
-
+        
     }
     
     var okWhenTouchBegan = 0 ;
@@ -451,41 +517,37 @@ class GameScene: SKScene {
         for touch in touches {
             let location = touch.locationInNode(self)
             let touchedNode = self.nodeAtPoint(location)
-//            
-//            let dxTouch = location.x
-//            let dyTouch = location.y
+            //
+            //            let dxTouch = location.x
+            //            let dyTouch = location.y
             //print(dxTouch," ",dyTouch)
             for i in 1..<row {
                 for j in 1..<col {
-//                    let dx = diamondsArray[i][j].position.x + 40
-//                    let dy = diamondsArray[i][j].position.y + 30
-//                    let dxm = diamondsArray[i][j].position.x
-//                    let dym = diamondsArray[i][j].position.y
-//                    
-//                    if ((dxm<=dxTouch) && ( dym <= dyTouch) && (dyTouch<=dy) && (dxTouch<=dx)){
-//                        print("tocuhesBegan",i," ",j)
-//                        changeDiamondsFromNormalToHighlighted(i, j: j)
-//                        diamondChoseI=i;
-//                        diamondChoseJ=j;
-//
-//                    }
+                    //                    let dx = diamondsArray[i][j].position.x + 40
+                    //                    let dy = diamondsArray[i][j].position.y + 30
+                    //                    let dxm = diamondsArray[i][j].position.x
+                    //                    let dym = diamondsArray[i][j].position.y
+                    //
+                    //                    if ((dxm<=dxTouch) && ( dym <= dyTouch) && (dyTouch<=dy) && (dxTouch<=dx)){
+                    //                        print("tocuhesBegan",i," ",j)
+                    //                        changeDiamondsFromNormalToHighlighted(i, j: j)
+                    //                        diamondChoseI=i;
+                    //                        diamondChoseJ=j;
+                    //
+                    //                    }
                     if touchedNode == diamondsArray[i][j] {
                         //print("tocuhesBegan",i," ",j)
                         changeDiamondsFromNormalToHighlighted(i, j: j)
                         okWhenTouchBegan = 0
                         diamondChoseI=i;
                         diamondChoseJ=j;
-
+                        
                     }
                 }
             }
         }
     }
-    
-    func gameOver() {
-        
-    }
-    
+   
     func swapArray2Diamonds(i1 : Int,j1 : Int,i2 : Int,j2 : Int ) {
         let m = diamondsArraySTT[i1][j1]
         diamondsArraySTT[i1][j1] = diamondsArraySTT[i2][j2]
@@ -498,7 +560,7 @@ class GameScene: SKScene {
             swapArray2Diamonds(i1, j1: j1, i2: i2, j2: j2)
             return true
         } else {
-            gameOver()
+            
             return false
         }
     }
@@ -569,21 +631,21 @@ class GameScene: SKScene {
         //print(dxTouch," ",dyTouch)
         for i in 1..<row {
             for j in 1..<col {
-//                let dx = diamondsArray[i][j].position.x + 40
-//                let dy = diamondsArray[i][j].position.y + 30
-//                let dxm = diamondsArray[i][j].position.x
-//                let dym = diamondsArray[i][j].position.y
-//                
-//                if ((dxm<=dxTouch) && ( dym <= dyTouch) && (dyTouch<=dy) && (dxTouch<=dx)){
-//                    print("touchesEnded",i," ",j)
-//                    diamondToI=i;
-//                    diamondToJ=j;
-//                    changeDiamondsFormHighlightedToNormal(diamondChoseI, j: diamondChoseJ)
-//                    run()
-//                    return
-//                }
+                //                let dx = diamondsArray[i][j].position.x + 40
+                //                let dy = diamondsArray[i][j].position.y + 30
+                //                let dxm = diamondsArray[i][j].position.x
+                //                let dym = diamondsArray[i][j].position.y
+                //
+                //                if ((dxm<=dxTouch) && ( dym <= dyTouch) && (dyTouch<=dy) && (dxTouch<=dx)){
+                //                    print("touchesEnded",i," ",j)
+                //                    diamondToI=i;
+                //                    diamondToJ=j;
+                //                    changeDiamondsFormHighlightedToNormal(diamondChoseI, j: diamondChoseJ)
+                //                    run()
+                //                    return
+                //                }
                 if touchedNode == diamondsArray[i][j] {
-                   // print("touchesEnded",i," ",j)
+                    // print("touchesEnded",i," ",j)
                     diamondToI=i;
                     diamondToJ=j;
                     changeDiamondsFormHighlightedToNormal(diamondChoseI, j: diamondChoseJ)
