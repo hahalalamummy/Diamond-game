@@ -3,6 +3,34 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "GameScene.checkCanEatOrNot() -&gt; Bool:GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "checkCanEatOrNot()">
+            </PersistentString>
+            <PersistentString
+               value = "diamondsArraySTT[i][j]">
+            </PersistentString>
+            <PersistentString
+               value = "diamondsArraySTT[i][j-1]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.run() -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "diamondsArraySTT[1][1]">
+            </PersistentString>
+            <PersistentString
+               value = "diamondsArraySTT[1][2]">
+            </PersistentString>
+            <PersistentString
+               value = "diamondsArraySTT[1][3]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GameScene.makeArray() -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
@@ -14,18 +42,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "checkCanEatOrNot()">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "GameScene.dropDiamond() -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
                value = "diamondsArraySTT[i][j]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "checkCanEatOrNot()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
