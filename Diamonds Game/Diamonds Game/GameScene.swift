@@ -84,7 +84,7 @@ class GameScene: SKScene {
     
     func setPositionForDiamondsArray(i : Int , j : Int) {
         
-        let dx = (self.frame.size.width-100)/4 * CGFloat(j)
+        let dx = (self.frame.size.width-70)/4 * CGFloat(j)
         let dy = (self.frame.size.height-80)/5 * CGFloat(i)
         //diamondsArray[i][j].position = CGPoint(x: dx, y: dy)
         self.diamondsArray[i][j].runAction(SKAction.moveTo(CGPoint.init(x: dx, y: dy), duration: 0.3))
