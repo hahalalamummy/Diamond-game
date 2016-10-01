@@ -13,8 +13,8 @@ class GameScene: SKScene {
         var x : Int
         var y : Int
     }
-    let row = 7
-    let col = 6
+    let row=6
+    let col = 5
     var diamondChoseI : Int = 0
     var diamondChoseJ : Int = 0
     var diamondToI : Int = 0
@@ -22,9 +22,9 @@ class GameScene: SKScene {
     
     var Q = Array(count: 300, repeatedValue: locaXY(x: -1, y: -1))
     
-    var diamondsArray = Array(count: 8, repeatedValue: Array(count: 7, repeatedValue: SKSpriteNode(imageNamed: "1.png")))
+    var diamondsArray = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: SKSpriteNode(imageNamed: "1.png")))
     
-    var diamondsArraySTT = Array(count: 8, repeatedValue: Array(count: 7, repeatedValue: -1))
+    var diamondsArraySTT = Array(count: 7, repeatedValue: Array(count: 6, repeatedValue: -1))
     func radDiamonds() -> Int {
         return Int(arc4random_uniform(5)+1)
         //return 1
@@ -56,9 +56,9 @@ class GameScene: SKScene {
     }
     
     func makeArray(){
-        for i in 1..<row
+        for i in 1..<6
         {
-            for j in 1..<col
+            for j in 1..<5
             {
                 
                 //diamondsArraySTT[i][j]  =   x
@@ -84,8 +84,8 @@ class GameScene: SKScene {
     
     func setPositionForDiamondsArray(i : Int , j : Int) {
         
-        let dx = (self.frame.size.width-55)/5 * CGFloat(j)
-        let dy = (self.frame.size.height-70)/6 * CGFloat(i)
+        let dx = (self.frame.size.width-70)/4 * CGFloat(j)
+        let dy = (self.frame.size.height-80)/5 * CGFloat(i)
         //diamondsArray[i][j].position = CGPoint(x: dx, y: dy)
         self.diamondsArray[i][j].runAction(SKAction.moveTo(CGPoint.init(x: dx, y: dy), duration: 0.3))
         //print(dx," ",dy," ","{",i,",",j,"}")
@@ -380,8 +380,8 @@ class GameScene: SKScene {
             let dxTouch = location.x
             let dyTouch = location.y
             //print(dxTouch," ",dyTouch)
-            for i in 1..<row {
-                for j in 1..<col {
+            for i in 1..<6 {
+                for j in 1..<5 {
                     let dx = diamondsArray[i][j].position.x + 50
                     let dy = diamondsArray[i][j].position.y + 40
                     let dxm = diamondsArray[i][j].position.x
@@ -402,7 +402,7 @@ class GameScene: SKScene {
         
     }
     
-    func swapArray2Diamonds(i1 : Int,j1 : Int,i2 : Int,j2 : Int ) {
+    func swaptArray2Diamonds(i1 : Int,j1 : Int,i2 : Int,j2 : Int ) {
         let m = diamondsArraySTT[i1][j1]
         diamondsArraySTT[i1][j1] = diamondsArraySTT[i2][j2]
         diamondsArraySTT[i2][j2] = m
@@ -411,7 +411,7 @@ class GameScene: SKScene {
     func checkLetorNotSwapArray2Diamonds(i1 : Int,j1 : Int,i2 : Int,j2 : Int) ->Bool {
         swap2Diamonds(i1, j1: j1, i2: i2, j2: j2)
         if (checkLetorNot()) {
-            swapArray2Diamonds(i1, j1: j1, i2: i2, j2: j2)
+            swap2Diamonds(i1, j1: j1, i2: i2, j2: j2)
             return true
         } else {
             gameOver()
@@ -479,8 +479,8 @@ class GameScene: SKScene {
         let dxTouch = location.x
         let dyTouch = location.y
         //print(dxTouch," ",dyTouch)
-        for i in 1..<row {
-            for j in 1..<col {
+        for i in 1..<6 {
+            for j in 1..<5 {
                 let dx = diamondsArray[i][j].position.x + 50
                 let dy = diamondsArray[i][j].position.y + 40
                 let dxm = diamondsArray[i][j].position.x
