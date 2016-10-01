@@ -16,6 +16,8 @@
 		93205EC31D85079A00EF5763 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93205EC11D85079A00EF5763 /* LaunchScreen.storyboard */; };
 		93205ED51D850F1400EF5763 /* screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93205ED41D850F1400EF5763 /* screen.jpg */; };
 		93205ED91D8512A400EF5763 /* backgroundemo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93205ED81D8512A400EF5763 /* backgroundemo.jpg */; };
+		93F231AE1DA05A8B000A8A65 /* Chomp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 93F231AD1DA05A8B000A8A65 /* Chomp.wav */; };
+		93F231B01DA05A9D000A8A65 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93F231AF1DA05A9D000A8A65 /* Mining by Moonlight.mp3 */; };
 		93FF06B21D85438900D52344 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 93FF06B11D85438900D52344 /* background.png */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		93205EC41D85079A00EF5763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93205ED41D850F1400EF5763 /* screen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screen.jpg; sourceTree = "<group>"; };
 		93205ED81D8512A400EF5763 /* backgroundemo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backgroundemo.jpg; sourceTree = "<group>"; };
+		93F231AD1DA05A8B000A8A65 /* Chomp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Chomp.wav; sourceTree = "<group>"; };
+		93F231AF1DA05A9D000A8A65 /* Mining by Moonlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mining by Moonlight.mp3"; sourceTree = "<group>"; };
 		93FF06B11D85438900D52344 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +71,8 @@
 				93FF06B11D85438900D52344 /* background.png */,
 				93205ED81D8512A400EF5763 /* backgroundemo.jpg */,
 				93205ED41D850F1400EF5763 /* screen.jpg */,
+				93F231AD1DA05A8B000A8A65 /* Chomp.wav */,
+				93F231AF1DA05A9D000A8A65 /* Mining by Moonlight.mp3 */,
 				93205EB41D85079A00EF5763 /* AppDelegate.swift */,
 				93205EB61D85079A00EF5763 /* GameScene.sks */,
 				93205EB81D85079A00EF5763 /* GameScene.swift */,
@@ -138,9 +144,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				93FF06B21D85438900D52344 /* background.png in Resources */,
+				93F231B01DA05A9D000A8A65 /* Mining by Moonlight.mp3 in Resources */,
 				93205ED51D850F1400EF5763 /* screen.jpg in Resources */,
 				93205EB71D85079A00EF5763 /* GameScene.sks in Resources */,
 				93205EC31D85079A00EF5763 /* LaunchScreen.storyboard in Resources */,
+				93F231AE1DA05A8B000A8A65 /* Chomp.wav in Resources */,
 				93205ED91D8512A400EF5763 /* backgroundemo.jpg in Resources */,
 				93205EC01D85079A00EF5763 /* Assets.xcassets in Resources */,
 				93205EBE1D85079A00EF5763 /* Main.storyboard in Resources */,

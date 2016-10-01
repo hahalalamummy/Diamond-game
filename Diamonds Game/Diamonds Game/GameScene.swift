@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 class GameScene: SKScene {
     struct locaXY {
@@ -146,11 +147,18 @@ class GameScene: SKScene {
     
     }
     
+    func playBackGroundMusic() {
+        let backGroundMusic = SKAudioNode(fileNamed: "Mining by Moonlight.mp3")
+        backGroundMusic.autoplayLooped = true
+        addChild(backGroundMusic)
+    }
+    
     override func didMoveToView(view: SKView) {
         print("didtomoveview")
         addBackground()
         makeArray()
         addLabel()
+        playBackGroundMusic()
     }
     
     
@@ -413,21 +421,9 @@ class GameScene: SKScene {
         diamondsArraySTT[i][j] = x
     }
     
-    func playSound(i: Int){
-        let play: SKAction
-        switch i {
-        case 3:
-            // ăn 3
-            play = SKAction.playSoundFileNamed("", waitForCompletion: false)
-        case 4:
-            //ăn 4
-            play = SKAction.playSoundFileNamed("", waitForCompletion: false)
-        case 5:
-            //ăn 5
-            play = SKAction.playSoundFileNamed("", waitForCompletion: false)
-        default:
-            return
-        }
+    func playSound(){
+        let play = SKAction.playSoundFileNamed("Chomp.wav", waitForCompletion: false)
+        
         self.runAction(play)
     }
     
@@ -541,10 +537,13 @@ class GameScene: SKScene {
                 let delete = SKAction.runBlock{
                     self.eatDiamonds()
                 }
+                let playSound = SKAction.runBlock{
+                    self.playSound()
+                }
                 let drop = SKAction.runBlock{
                     self.dropDiamond()
                 }
-                self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),delete,SKAction.waitForDuration(0.32),drop]))
+                self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),delete,playSound,SKAction.waitForDuration(0.32),drop]))
             }
             else {
                 let swap = SKAction.runBlock{
@@ -606,13 +605,16 @@ class GameScene: SKScene {
             let delete = SKAction.runBlock{
                 self.eatDiamonds()
             }
+            let playSound = SKAction.runBlock{
+                self.playSound()
+            }
             let drop = SKAction.runBlock{
                 self.dropDiamond()
             }
             let label = SKAction.runBlock{
                 self.scoreLabel.text = "Score :" + String(self.score)
             }
-            self.runAction(SKAction.sequence([SKAction.waitForDuration(0.5),delete,SKAction.waitForDuration(0.32),drop,SKAction.waitForDuration(0.1),label]))
+            self.runAction(SKAction.sequence([SKAction.waitForDuration(0.5),delete,playSound,SKAction.waitForDuration(0.32),drop,SKAction.waitForDuration(0.1),label]))
             
         }
     }
