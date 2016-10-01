@@ -29,8 +29,35 @@ class GameScene: SKScene {
         return Int(arc4random_uniform(5)+1)
         //return 1
     }
+    
+    func setImageOfDiamonds(numberOfImage : Int , i : Int , j : Int, i1 : String , i2 : String , i3 : String , i4 : String , i5 :String)  {
+        let x = numberOfImage
+        switch x {
+        case 1:
+            diamondsArray[i][j].texture = SKTexture(imageNamed: i1)
+      
+        case 2:
+            diamondsArray[i][j].texture = SKTexture(imageNamed: i2)
+
+        case 3:
+            diamondsArray[i][j].texture = SKTexture(imageNamed: i3)
+
+        case 4:
+            diamondsArray[i][j].texture = SKTexture(imageNamed: i4)
+
+        case 5:
+            diamondsArray[i][j].texture = SKTexture(imageNamed: i5)
+   
+        default: print(0)
+            
+            
+        }
+
+    }
     func setDiamonds(i : Int ,j : Int) {
         let x=radDiamonds()
+      // setImageOfDiamonds(x, i: i, j: j, i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
+        
         switch x {
         case 1:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "1")
@@ -323,26 +350,28 @@ class GameScene: SKScene {
     
     func changeDiamonds(i : Int ,j : Int) {
         let x=radDiamonds()
-        switch x {
-        case 1:
-            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "1")
-            diamondsArray[i][j].texture = SKTexture(imageNamed: "1")
-        case 2:
-            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "2")
-            diamondsArray[i][j].texture = SKTexture(imageNamed: "2")
-        case 3:
-            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "3")
-            diamondsArray[i][j].texture = SKTexture(imageNamed: "3")
-        case 4:
-            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "4")
-            diamondsArray[i][j].texture = SKTexture(imageNamed: "4")
-        case 5:
-            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "5")
-            diamondsArray[i][j].texture = SKTexture(imageNamed: "5")
-        default: print(0)
-            
-            
-        }
+        setImageOfDiamonds(x, i: i, j: j, i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
+
+//        switch x {
+//        case 1:
+//            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "1")
+//            diamondsArray[i][j].texture = SKTexture(imageNamed: "1")
+//        case 2:
+//            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "2")
+//            diamondsArray[i][j].texture = SKTexture(imageNamed: "2")
+//        case 3:
+//            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "3")
+//            diamondsArray[i][j].texture = SKTexture(imageNamed: "3")
+//        case 4:
+//            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "4")
+//            diamondsArray[i][j].texture = SKTexture(imageNamed: "4")
+//        case 5:
+//            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "5")
+//            diamondsArray[i][j].texture = SKTexture(imageNamed: "5")
+//        default: print(0)
+//            
+//            
+//        }
         diamondsArray[i][j].size = CGSize(width: 50, height: 40)
         diamondsArraySTT[i][j] = x
     }
@@ -365,7 +394,17 @@ class GameScene: SKScene {
         self.runAction(play)
     }
     
+    func changeDiamondsFromNormalToHighlighted(i : Int , j : Int)  {
+        let x = diamondsArraySTT[i][j]
+        setImageOfDiamonds(x, i: i, j: j, i1: "1hl", i2: "2hl", i3: "3hl", i4: "4hl", i5: "5hl")
+
+    }
     
+    func changeDiamondsFormHighlightedToNormal(i : Int , j :Int)  {
+        let x = diamondsArraySTT[i][j]
+        setImageOfDiamonds(x, i: i, j: j, i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
+
+    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
@@ -376,22 +415,31 @@ class GameScene: SKScene {
         
         for touch in touches {
             let location = touch.locationInNode(self)
+            let touchedNode = self.nodeAtPoint(location)
             
             let dxTouch = location.x
             let dyTouch = location.y
             //print(dxTouch," ",dyTouch)
             for i in 1..<row {
                 for j in 1..<col {
-                    let dx = diamondsArray[i][j].position.x + 50
-                    let dy = diamondsArray[i][j].position.y + 40
-                    let dxm = diamondsArray[i][j].position.x
-                    let dym = diamondsArray[i][j].position.y
-                    
-                    if ((dxm<=dxTouch) && ( dym <= dyTouch) && (dyTouch<=dy) && (dxTouch<=dx)){
+//                    let dx = diamondsArray[i][j].position.x + 40
+//                    let dy = diamondsArray[i][j].position.y + 30
+//                    let dxm = diamondsArray[i][j].position.x
+//                    let dym = diamondsArray[i][j].position.y
+//                    
+//                    if ((dxm<=dxTouch) && ( dym <= dyTouch) && (dyTouch<=dy) && (dxTouch<=dx)){
+//                        print("tocuhesBegan",i," ",j)
+//                        changeDiamondsFromNormalToHighlighted(i, j: j)
+//                        diamondChoseI=i;
+//                        diamondChoseJ=j;
+//
+//                    }
+                    if touchedNode == diamondsArray[i][j] {
                         print("tocuhesBegan",i," ",j)
+                        changeDiamondsFromNormalToHighlighted(i, j: j)
                         diamondChoseI=i;
                         diamondChoseJ=j;
-                        
+
                     }
                 }
             }
@@ -476,21 +524,30 @@ class GameScene: SKScene {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let location = touch!.locationInNode(self)
+        let touchedNode = self.nodeAtPoint(location)
         let dxTouch = location.x
         let dyTouch = location.y
         //print(dxTouch," ",dyTouch)
         for i in 1..<row {
             for j in 1..<col {
-                let dx = diamondsArray[i][j].position.x + 50
-                let dy = diamondsArray[i][j].position.y + 40
-                let dxm = diamondsArray[i][j].position.x
-                let dym = diamondsArray[i][j].position.y
-                
-                if ((dxm<=dxTouch) && ( dym <= dyTouch) && (dyTouch<=dy) && (dxTouch<=dx)){
+//                let dx = diamondsArray[i][j].position.x + 40
+//                let dy = diamondsArray[i][j].position.y + 30
+//                let dxm = diamondsArray[i][j].position.x
+//                let dym = diamondsArray[i][j].position.y
+//                
+//                if ((dxm<=dxTouch) && ( dym <= dyTouch) && (dyTouch<=dy) && (dxTouch<=dx)){
+//                    print("touchesEnded",i," ",j)
+//                    diamondToI=i;
+//                    diamondToJ=j;
+//                    changeDiamondsFormHighlightedToNormal(diamondChoseI, j: diamondChoseJ)
+//                    run()
+//                    return
+//                }
+                if touchedNode == diamondsArray[i][j] {
                     print("touchesEnded",i," ",j)
                     diamondToI=i;
                     diamondToJ=j;
-                    
+                    changeDiamondsFormHighlightedToNormal(diamondChoseI, j: diamondChoseJ)
                     run()
                     return
                 }
@@ -510,7 +567,7 @@ class GameScene: SKScene {
             let drop = SKAction.runBlock{
                 self.dropDiamond()
             }
-            self.runAction(SKAction.sequence([SKAction.waitForDuration(0.8),delete,SKAction.waitForDuration(0.32),drop]))
+            self.runAction(SKAction.sequence([SKAction.waitForDuration(0.5),delete,SKAction.waitForDuration(0.32),drop]))
         }
     }
 }
