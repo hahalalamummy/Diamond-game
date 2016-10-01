@@ -108,17 +108,6 @@ class GameScene: SKScene {
         print("didtomoveview")
         addBackground()
         makeArray()
-        while checkCanEatOrNot() {
-            eatDiamondSTT()
-            //self.runAction(swap)
-            let delete = SKAction.runBlock{
-                self.eatDiamonds()
-            }
-            let drop = SKAction.runBlock{
-                self.dropDiamond()
-            }
-            self.runAction(SKAction.sequence([SKAction.waitForDuration(0.8),delete,SKAction.waitForDuration(0.32),drop]))
-        }
     }
     
     
@@ -454,24 +443,20 @@ class GameScene: SKScene {
             diamondsArraySTT[diamondToI][diamondToJ] = m
             
             if checkCanEatOrNot() {
-                repeat {
-                    let swap = SKAction.runBlock{
-                        self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
-                    }
-                    
-                    eatDiamondSTT()
-                    
-                    //self.runAction(swap)
-                    let delete = SKAction.runBlock{
-                        self.eatDiamonds()
-                    }
-                    let drop = SKAction.runBlock{
-                        self.dropDiamond()
-                    }
-                    self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),delete,SKAction.waitForDuration(0.32),drop]))
-                }while checkCanEatOrNot()
+                let swap = SKAction.runBlock{
+                    self.swap2Diamonds(self.diamondChoseI, j1: self.diamondChoseJ, i2: self.diamondToI, j2: self.diamondToJ)
+                }
                 
+                eatDiamondSTT()
                 
+                //self.runAction(swap)
+                let delete = SKAction.runBlock{
+                    self.eatDiamonds()
+                }
+                let drop = SKAction.runBlock{
+                    self.dropDiamond()
+                }
+                self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),delete,SKAction.waitForDuration(0.32),drop]))
             }
             else {
                 let swap = SKAction.runBlock{
@@ -514,8 +499,18 @@ class GameScene: SKScene {
         
     }
     
-//    override func update(currentTime: CFTimeInterval) {
-//        /* Called before each frame is rendered */
-//        
-//    }
+    override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
+        if checkCanEatOrNot() {
+            eatDiamondSTT()
+            //self.runAction(swap)
+            let delete = SKAction.runBlock{
+                self.eatDiamonds()
+            }
+            let drop = SKAction.runBlock{
+                self.dropDiamond()
+            }
+            self.runAction(SKAction.sequence([SKAction.waitForDuration(0.8),delete,SKAction.waitForDuration(0.32),drop]))
+        }
+    }
 }
