@@ -14,6 +14,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "checkCanEatOrNot()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GameScene.dropDiamond() -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString

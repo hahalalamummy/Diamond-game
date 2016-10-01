@@ -86,7 +86,8 @@ class GameScene: SKScene {
         
         let dx = (self.frame.size.width-100)/4 * CGFloat(j)
         let dy = (self.frame.size.height-80)/5 * CGFloat(i)
-        diamondsArray[i][j].position = CGPoint(x: dx, y: dy)
+        //diamondsArray[i][j].position = CGPoint(x: dx, y: dy)
+        self.diamondsArray[i][j].runAction(SKAction.moveTo(CGPoint.init(x: dx, y: dy), duration: 0.3))
         //print(dx," ",dy," ","{",i,",",j,"}")
         
     }
@@ -108,7 +109,14 @@ class GameScene: SKScene {
         addBackground()
         makeArray()
         if checkCanEatOrNot() {
-            eatDiamonds()
+            //self.runAction(swap)
+            let delete = SKAction.runBlock{
+                self.eatDiamonds()
+            }
+            let drop = SKAction.runBlock{
+                self.dropDiamond()
+            }
+            self.runAction(SKAction.sequence([SKAction.waitForDuration(0.8),delete,SKAction.waitForDuration(0.32),drop]))
         }
     }
     
@@ -263,10 +271,10 @@ class GameScene: SKScene {
         //print("1 position: ", diamondsArray[i1][j1].position.x," ", diamondsArray[i1][j1].position.y)
         //print("2 position: ", diamondsArray[i2][j2].position.x," ", diamondsArray[i2][j2].position.y)
         
-        let oldPosition1 : CGPoint
-        oldPosition1 = diamondsArray[i1][j1].position
-        let oldPosition2 : CGPoint
-        oldPosition2 = diamondsArray[i2][j2].position
+//        let oldPosition1 : CGPoint
+//        oldPosition1 = diamondsArray[i1][j1].position
+//        let oldPosition2 : CGPoint
+//        oldPosition2 = diamondsArray[i2][j2].position
         //print("old position 1: ", oldPosition1)
         //print("old position 2: ", oldPosition2)
         
@@ -279,26 +287,8 @@ class GameScene: SKScene {
         //print("1 position: ", diamondsArray[i1][j1].position.x," ", diamondsArray[i1][j1].position.y)
         //print("2 position: ", diamondsArray[i2][j2].position.x," ", diamondsArray[i2][j2].position.y)
         
-        //print("diamond1 move")
-        let animationSwap1 = SKAction.runBlock{
-            let diamondMove = SKAction.moveTo(oldPosition1, duration: 0.3)
-            self.diamondsArray[i1][j1].runAction(diamondMove)
-        }
-        
-        //print("diamond2 move")
-        let animationSwap2 = SKAction.runBlock{
-            let diamondMove = SKAction.moveTo(oldPosition2, duration: 0.3)
-            self.diamondsArray[i2][j2].runAction(diamondMove)
-        }
-        
-//        let n = diamondsArraySTT[i1][j1]
-//        diamondsArraySTT[i1][j1] = diamondsArraySTT[i2][j2]
-//        diamondsArraySTT[i2][j2] = n
-        
-        
-        
-        self.runAction(animationSwap1)
-        self.runAction(animationSwap2)
+        setPositionForDiamondsArray(i1, j: j1)
+        setPositionForDiamondsArray(i2, j: j2)
         //print("1 position: ", diamondsArray[i1][j1].position.x," ", diamondsArray[i1][j1].position.y)
         //print("2 position: ", diamondsArray[i2][j2].position.x," ", diamondsArray[i2][j2].position.y)
         //        diamondsArray[i1][j1].removeFromParent()
@@ -310,35 +300,32 @@ class GameScene: SKScene {
     }
     
     func dropDiamond() {
-        var count = 0
-        for j in 1..<col {
-            count = 0
-            for i in 1..<row {
-                if diamondsArraySTT[i][j] == -1 {
-                    for k in i+1..<row {
-                        if diamondsArraySTT[k][j] != -1 {
-                            swap(&diamondsArraySTT[k][j], &diamondsArraySTT[i][j])
-                            swap2Diamonds(k, j1: j, i2: i, j2: j)
-                            break
+        let a = SKAction.runBlock {
+            for j in 1..<self.col {
+                for i in 1..<self.row {
+                    if self.diamondsArraySTT[i][j] == -1 {
+                        for k in i+1..<self.row {
+                            if self.diamondsArraySTT[k][j] != -1 {
+                                swap(&self.diamondsArraySTT[k][j], &self.diamondsArraySTT[i][j])
+                                self.swap2Diamonds(k, j1: j, i2: i, j2: j)
+                                break
+                            }
                         }
-                        //(self.frame.size.height-80)/5
-//                        swap(&diamondsArray[k][j], &diamondsArray[k-1][j])
-//                        swap(&diamondsArraySTT[k][j], &diamondsArraySTT[k-1][j])
-//                        let diamondMove = SKAction.moveByX(0, y: -(self.frame.size.height-80)/5, duration: 0.3)
-//                        self.diamondsArray[k][j].runAction(diamondMove)
-                        
                     }
                 }
             }
         }
-//        for i in 1..<row {
-//            for j in 1..<col {
-//                if diamondsArraySTT[i][j] == -1 {
-//                    changeDiamonds(i, j: j)
-//                    diamondsArray[i][j].runAction(SKAction.fadeInWithDuration(0.3))
-//                }
-//            }
-//        }
+        let b = SKAction.runBlock {
+            for i in 1..<self.row {
+                for j in 1..<self.col {
+                    if self.diamondsArraySTT[i][j] == -1 {
+                        self.changeDiamonds(i, j: j)
+                        self.diamondsArray[i][j].runAction(SKAction.fadeInWithDuration(0.3))
+                    }
+                }
+            }
+        }
+        self.runAction(SKAction.sequence([a,SKAction.waitForDuration(0.32),b]))
     }
     
     func changeDiamonds(i : Int ,j : Int) {
@@ -436,6 +423,7 @@ class GameScene: SKScene {
                     self.dropDiamond()
                 }
                 self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),delete,SKAction.waitForDuration(0.32),drop]))
+                
             }
             else {
                 let swap = SKAction.runBlock{
