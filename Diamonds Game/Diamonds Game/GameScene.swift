@@ -228,6 +228,10 @@ class GameScene: SKScene {
                         }
                         okWhenTouchBegan += 1
                         score += (count-2) * okWhenTouchBegan
+                        print("score : ", score)
+                        print("okWhenTouchBegan : " , okWhenTouchBegan)
+                      //  print(i, " " ,j)
+                        print("count: ",count )
                     }
                     count = 1
                 } else { count += 1 }
@@ -251,6 +255,9 @@ class GameScene: SKScene {
                         }
                         okWhenTouchBegan += 1
                         score += (count-2) * okWhenTouchBegan
+                        print("score : ", score)
+                        print("okWhenTouchBegan : " , okWhenTouchBegan)
+                        print("count: ",count )
 
                     }
                     count = 1
@@ -467,7 +474,7 @@ class GameScene: SKScene {
 //
 //                    }
                     if touchedNode == diamondsArray[i][j] {
-                        print("tocuhesBegan",i," ",j)
+                        //print("tocuhesBegan",i," ",j)
                         changeDiamondsFromNormalToHighlighted(i, j: j)
                         okWhenTouchBegan = 0
                         diamondChoseI=i;
@@ -577,7 +584,7 @@ class GameScene: SKScene {
 //                    return
 //                }
                 if touchedNode == diamondsArray[i][j] {
-                    print("touchesEnded",i," ",j)
+                   // print("touchesEnded",i," ",j)
                     diamondToI=i;
                     diamondToJ=j;
                     changeDiamondsFormHighlightedToNormal(diamondChoseI, j: diamondChoseJ)
@@ -602,8 +609,11 @@ class GameScene: SKScene {
             let drop = SKAction.runBlock{
                 self.dropDiamond()
             }
-            self.runAction(SKAction.sequence([SKAction.waitForDuration(0.5),delete,SKAction.waitForDuration(0.32),drop]))
-            scoreLabel.text = "Score :" + String(score)
+            let label = SKAction.runBlock{
+                self.scoreLabel.text = "Score :" + String(self.score)
+            }
+            self.runAction(SKAction.sequence([SKAction.waitForDuration(0.5),delete,SKAction.waitForDuration(0.32),drop,SKAction.waitForDuration(0.1),label]))
+            
         }
     }
 }
