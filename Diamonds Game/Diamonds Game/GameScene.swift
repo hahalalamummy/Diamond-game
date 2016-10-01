@@ -34,14 +34,19 @@ class GameScene: SKScene {
         switch x {
         case 1:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "1")
+            //diamondsArray[i][j].texture = SKTexture(imageNamed: "1")
         case 2:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "2")
+            //diamondsArray[i][j].texture = SKTexture(imageNamed: "2")
         case 3:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "3")
+            //diamondsArray[i][j].texture = SKTexture(imageNamed: "3")
         case 4:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "4")
+            //diamondsArray[i][j].texture = SKTexture(imageNamed: "4")
         case 5:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "5")
+            //diamondsArray[i][j].texture = SKTexture(imageNamed: "5")
         default: print(0)
             
             
@@ -62,6 +67,18 @@ class GameScene: SKScene {
                 addChild(diamondsArray[i][j])
             }
         }
+        
+//        for i in 1..<6
+//        {
+//            for j in 1..<5
+//            {
+//                
+//                //diamondsArraySTT[i][j]  =   x
+//                setDiamonds(i, j: j)
+//                setPositionForDiamondsArray(i,j: j)
+//                //addChild(diamondsArray[i][j])
+//            }
+//        }
     }
     
     
@@ -298,18 +315,56 @@ class GameScene: SKScene {
             count = 0
             for i in 1..<row {
                 if diamondsArraySTT[i][j] == -1 {
-                    //swap lên đỉnh
+                    for k in i+1..<row {
+                        if diamondsArraySTT[k][j] != -1 {
+                            swap(&diamondsArraySTT[k][j], &diamondsArraySTT[i][j])
+                            swap2Diamonds(k, j1: j, i2: i, j2: j)
+                            break
+                        }
+                        //(self.frame.size.height-80)/5
+//                        swap(&diamondsArray[k][j], &diamondsArray[k-1][j])
+//                        swap(&diamondsArraySTT[k][j], &diamondsArraySTT[k-1][j])
+//                        let diamondMove = SKAction.moveByX(0, y: -(self.frame.size.height-80)/5, duration: 0.3)
+//                        self.diamondsArray[k][j].runAction(diamondMove)
+                        
+                    }
                 }
             }
         }
-        for i in 1..<row {
-            for j in 1..<col {
-                if diamondsArraySTT[i][j] == -1 {
-                    setDiamonds(i, j: j)
-                    diamondsArray[i][j].runAction(SKAction.fadeInWithDuration(0.3))
-                }
-            }
+//        for i in 1..<row {
+//            for j in 1..<col {
+//                if diamondsArraySTT[i][j] == -1 {
+//                    changeDiamonds(i, j: j)
+//                    diamondsArray[i][j].runAction(SKAction.fadeInWithDuration(0.3))
+//                }
+//            }
+//        }
+    }
+    
+    func changeDiamonds(i : Int ,j : Int) {
+        let x=radDiamonds()
+        switch x {
+        case 1:
+            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "1")
+            diamondsArray[i][j].texture = SKTexture(imageNamed: "1")
+        case 2:
+            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "2")
+            diamondsArray[i][j].texture = SKTexture(imageNamed: "2")
+        case 3:
+            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "3")
+            diamondsArray[i][j].texture = SKTexture(imageNamed: "3")
+        case 4:
+            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "4")
+            diamondsArray[i][j].texture = SKTexture(imageNamed: "4")
+        case 5:
+            //diamondsArray[i][j] = SKSpriteNode(imageNamed: "5")
+            diamondsArray[i][j].texture = SKTexture(imageNamed: "5")
+        default: print(0)
+            
+            
         }
+        diamondsArray[i][j].size = CGSize(width: 50, height: 40)
+        diamondsArraySTT[i][j] = x
     }
     
     func playSound(i: Int){
@@ -380,7 +435,7 @@ class GameScene: SKScene {
                 let drop = SKAction.runBlock{
                     self.dropDiamond()
                 }
-                self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),delete,SKAction.waitForDuration(3),drop]))
+                self.runAction(SKAction.sequence([swap,SKAction.waitForDuration(0.32),delete,SKAction.waitForDuration(0.32),drop]))
             }
             else {
                 let swap = SKAction.runBlock{

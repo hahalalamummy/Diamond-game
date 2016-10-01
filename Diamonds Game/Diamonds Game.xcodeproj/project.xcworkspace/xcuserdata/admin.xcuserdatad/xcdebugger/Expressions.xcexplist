@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "GameScene.makeArray() -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "diamondsArray[i][j].position">
+            </PersistentString>
+            <PersistentString
+               value = "diamondsArray[i][j].texture">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GameScene.dropDiamond() -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
