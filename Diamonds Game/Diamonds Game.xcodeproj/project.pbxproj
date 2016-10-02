@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84B920DA1DA0921D0053B58D /* Explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84B920D91DA0921D0053B58D /* Explosion.wav */; };
+		84B920E61DA095280053B58D /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B920E41DA095280053B58D /* spark.png */; };
+		84B920E81DA095580053B58D /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84B920E71DA095580053B58D /* explosion.sks */; };
 		93205EB51D85079A00EF5763 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93205EB41D85079A00EF5763 /* AppDelegate.swift */; };
 		93205EB71D85079A00EF5763 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93205EB61D85079A00EF5763 /* GameScene.sks */; };
 		93205EB91D85079A00EF5763 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93205EB81D85079A00EF5763 /* GameScene.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84B920D91DA0921D0053B58D /* Explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explosion.wav; sourceTree = "<group>"; };
+		84B920E41DA095280053B58D /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		84B920E71DA095580053B58D /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
 		93205EB11D85079900EF5763 /* Diamonds Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diamonds Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93205EB41D85079A00EF5763 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93205EB61D85079A00EF5763 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -66,6 +72,7 @@
 			children = (
 				93F231AD1DA05A8B000A8A65 /* Chomp.wav */,
 				93F231AF1DA05A9D000A8A65 /* Mining by Moonlight.mp3 */,
+				84B920D91DA0921D0053B58D /* Explosion.wav */,
 				93205EB41D85079A00EF5763 /* AppDelegate.swift */,
 				93205EB61D85079A00EF5763 /* GameScene.sks */,
 				93205EB81D85079A00EF5763 /* GameScene.swift */,
@@ -75,6 +82,8 @@
 				93205EC11D85079A00EF5763 /* LaunchScreen.storyboard */,
 				93205EC41D85079A00EF5763 /* Info.plist */,
 				932917571DA070D700AE5CF4 /* GameOver.swift */,
+				84B920E71DA095580053B58D /* explosion.sks */,
+				84B920E41DA095280053B58D /* spark.png */,
 			);
 			path = "Diamonds Game";
 			sourceTree = "<group>";
@@ -138,8 +147,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				93F231B01DA05A9D000A8A65 /* Mining by Moonlight.mp3 in Resources */,
+				84B920E61DA095280053B58D /* spark.png in Resources */,
 				93205EB71D85079A00EF5763 /* GameScene.sks in Resources */,
+				84B920E81DA095580053B58D /* explosion.sks in Resources */,
 				93205EC31D85079A00EF5763 /* LaunchScreen.storyboard in Resources */,
+				84B920DA1DA0921D0053B58D /* Explosion.wav in Resources */,
 				93F231AE1DA05A8B000A8A65 /* Chomp.wav in Resources */,
 				93205EC01D85079A00EF5763 /* Assets.xcassets in Resources */,
 				93205EBE1D85079A00EF5763 /* Main.storyboard in Resources */,
