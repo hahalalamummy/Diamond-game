@@ -10,7 +10,7 @@ import SpriteKit
 import AVFoundation
 import UIKit
 
-class Level2: SKScene {
+class GameScene: SKScene {
     struct locaXY {
         var x : Int
         var y : Int
@@ -181,18 +181,18 @@ class Level2: SKScene {
         }
         
         if counter==0{
-//            
-//            timer.invalidate()
-//            removeCountDownTimerView()
+            //
+            //            timer.invalidate()
+            //            removeCountDownTimerView()
             
-//            var labelGameOver = UILabel(frame: CGRectMake(0, 0, 400, 31))
-//            labelGameOver.center = CGPointMake(160, 284)
-//            labelGameOver.textAlignment = NSTextAlignment.Center
-//            labelGameOver.text = "Game Over"
-//            labelGameOver.font = labelGameOver.font.fontWithSize(40)
-//            labelGameOver.textColor = UIColor.redColor()
-//            
-//            self.view!.addSubview(labelGameOver)
+            //            var labelGameOver = UILabel(frame: CGRectMake(0, 0, 400, 31))
+            //            labelGameOver.center = CGPointMake(160, 284)
+            //            labelGameOver.textAlignment = NSTextAlignment.Center
+            //            labelGameOver.text = "Game Over"
+            //            labelGameOver.font = labelGameOver.font.fontWithSize(40)
+            //            labelGameOver.textColor = UIColor.redColor()
+            //
+            //            self.view!.addSubview(labelGameOver)
             
             let reveal = SKTransition.flipHorizontalWithDuration(0.5)
             let scene = GameOverScene(size: self.size)
@@ -238,11 +238,11 @@ class Level2: SKScene {
         playBackGroundMusic()
         startTimer()
         
-//        if !self.checkLetorNot() {
-//            let skView = self.view! as SKView
-//            let gameScene = GameScene(size: skView.frame.size)
-//            skView.presentScene(gameScene)
-//        }
+        //        if !self.checkLetorNot() {
+        //            let skView = self.view! as SKView
+        //            let gameScene = GameScene(size: skView.frame.size)
+        //            skView.presentScene(gameScene)
+        //        }
     }
     
     
@@ -479,9 +479,9 @@ class Level2: SKScene {
     
     func changeDiamonds(i : Int ,j : Int) {
         var x=radDiamonds()
-//        while x == 0 {
-//            x=radDiamonds()
-//        }
+        //        while x == 0 {
+        //            x=radDiamonds()
+        //        }
         setImageOfDiamonds(x, i: i, j: j,i0 : "bomb" , i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
         
         //        switch x {
@@ -690,12 +690,12 @@ class Level2: SKScene {
         }
         self.runAction(SKAction.sequence([SKAction.waitForDuration(0.3-time),delete,playSound,SKAction.waitForDuration(0.3),drop]))
     }
- 
+    
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let location = touch!.locationInNode(self)
         let touchedNode = self.nodeAtPoint(location)
-   
+        
         //print(dxTouch," ",dyTouch)
         for i in 1..<row {
             for j in 1..<col {
@@ -712,7 +712,7 @@ class Level2: SKScene {
                                 ddDiamonds[i1][j1]=true
                             }
                         }
-                       
+                        
                         explode(diamondToI,j: diamondToJ)
                     }
                     
