@@ -203,7 +203,7 @@ class GameScene: SKScene {
     
     func addLabelTimer()  {
         timeLabel = SKLabelNode(fontNamed: "Chalkduster")
-        timeLabel.text = "Time : 60"
+        timeLabel.text = "Time : 10"
         timeLabel.horizontalAlignmentMode = .Right
         timeLabel.position = CGPoint(x:self.size.width-10, y:self.size.height-30)
         timeLabel.fontColor = UIColor.blackColor()
