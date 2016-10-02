@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84AE1BD21DA08CFB00B1F250 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE1BD11DA08CFB00B1F250 /* Score.swift */; };
+		84AE1BD41DA0937E00B1F250 /* newArray.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84AE1BD31DA0937E00B1F250 /* newArray.wav */; };
+		84AE1BD61DA0952400B1F250 /* ArrowEat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84AE1BD51DA0952400B1F250 /* ArrowEat.wav */; };
 		84B920DA1DA0921D0053B58D /* Explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84B920D91DA0921D0053B58D /* Explosion.wav */; };
 		84B920E61DA095280053B58D /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B920E41DA095280053B58D /* spark.png */; };
 		84B920E81DA095580053B58D /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84B920E71DA095580053B58D /* explosion.sks */; };
+		84C6743A1DA08D26009D2231 /* ChangeToLevel2Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C674391DA08D26009D2231 /* ChangeToLevel2Scene.swift */; };
 		84D2DBD41DA0D55F0088026C /* Level2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D2DBD31DA0D55F0088026C /* Level2.swift */; };
 		93007ABB1DA0BA6400B9811A /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93007ABA1DA0BA6400B9811A /* GameOverScene.swift */; };
 		93007ABD1DA0CCBF00B9811A /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93007ABC1DA0CCBF00B9811A /* MenuScene.swift */; };
@@ -25,9 +29,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84AE1BD11DA08CFB00B1F250 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		84AE1BD31DA0937E00B1F250 /* newArray.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = newArray.wav; sourceTree = "<group>"; };
+		84AE1BD51DA0952400B1F250 /* ArrowEat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ArrowEat.wav; sourceTree = "<group>"; };
 		84B920D91DA0921D0053B58D /* Explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explosion.wav; sourceTree = "<group>"; };
 		84B920E41DA095280053B58D /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		84B920E71DA095580053B58D /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
+		84C674391DA08D26009D2231 /* ChangeToLevel2Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeToLevel2Scene.swift; sourceTree = "<group>"; };
 		84D2DBD31DA0D55F0088026C /* Level2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
 		93007ABA1DA0BA6400B9811A /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		93007ABC1DA0CCBF00B9811A /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
@@ -77,6 +85,8 @@
 				93F231AD1DA05A8B000A8A65 /* Chomp.wav */,
 				93F231AF1DA05A9D000A8A65 /* Mining by Moonlight.mp3 */,
 				84B920D91DA0921D0053B58D /* Explosion.wav */,
+				84AE1BD31DA0937E00B1F250 /* newArray.wav */,
+				84AE1BD51DA0952400B1F250 /* ArrowEat.wav */,
 				93205EB41D85079A00EF5763 /* AppDelegate.swift */,
 				93205EB61D85079A00EF5763 /* GameScene.sks */,
 				84D2DBD31DA0D55F0088026C /* Level2.swift */,
@@ -90,6 +100,8 @@
 				84B920E41DA095280053B58D /* spark.png */,
 				93007ABA1DA0BA6400B9811A /* GameOverScene.swift */,
 				93007ABC1DA0CCBF00B9811A /* MenuScene.swift */,
+				84AE1BD11DA08CFB00B1F250 /* Score.swift */,
+				84C674391DA08D26009D2231 /* ChangeToLevel2Scene.swift */,
 			);
 			path = "Diamonds Game";
 			sourceTree = "<group>";
@@ -153,9 +165,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				93F231B01DA05A9D000A8A65 /* Mining by Moonlight.mp3 in Resources */,
+				84AE1BD41DA0937E00B1F250 /* newArray.wav in Resources */,
 				84B920E61DA095280053B58D /* spark.png in Resources */,
 				93205EB71D85079A00EF5763 /* GameScene.sks in Resources */,
 				84B920E81DA095580053B58D /* explosion.sks in Resources */,
+				84AE1BD61DA0952400B1F250 /* ArrowEat.wav in Resources */,
 				93205EC31D85079A00EF5763 /* LaunchScreen.storyboard in Resources */,
 				84B920DA1DA0921D0053B58D /* Explosion.wav in Resources */,
 				93F231AE1DA05A8B000A8A65 /* Chomp.wav in Resources */,
@@ -171,10 +185,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84AE1BD21DA08CFB00B1F250 /* Score.swift in Sources */,
 				84D2DBD41DA0D55F0088026C /* Level2.swift in Sources */,
 				93205EB91D85079A00EF5763 /* GameScene.swift in Sources */,
 				93205EBB1D85079A00EF5763 /* GameViewController.swift in Sources */,
 				93007ABD1DA0CCBF00B9811A /* MenuScene.swift in Sources */,
+				84C6743A1DA08D26009D2231 /* ChangeToLevel2Scene.swift in Sources */,
 				93007ABB1DA0BA6400B9811A /* GameOverScene.swift in Sources */,
 				93205EB51D85079A00EF5763 /* AppDelegate.swift in Sources */,
 			);

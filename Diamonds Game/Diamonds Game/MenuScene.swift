@@ -9,7 +9,7 @@
 import SpriteKit
 
 class MenuScene: SKScene {
-    let level1Button = SKSpriteNode(imageNamed: "Level1Button")
+    let level1Button = SKSpriteNode(imageNamed: "StartButton")
     override init(size: CGSize ) {
         super.init(size: size )
         
@@ -42,7 +42,7 @@ class MenuScene: SKScene {
         let touchedNode = self.nodeAtPoint(location)
         if touchedNode == level1Button {
             let reveal : SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
-            let scene = GameScene(size: self.view!.bounds.size)
+            let scene = Level2(size: self.view!.bounds.size)
             scene.scaleMode = .AspectFill
             self.view?.presentScene(scene, transition: reveal)
         }

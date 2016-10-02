@@ -22,8 +22,8 @@ class GameOverScene: SKScene {
         //
         //        //3
         var label = SKLabelNode(fontNamed: "Chalkduster")
-        label.text = "High Score: "
-        label.fontSize = 40
+        label.text = "High Score: " + String(score)
+        label.fontSize = 35
         label.fontColor = SKColor.blackColor()
         label.position = CGPointMake(self.size.width/2, self.size.height-40)
         self.addChild(label)

@@ -10,26 +10,28 @@ import SpriteKit
 import AVFoundation
 import UIKit
 
-class GameScene: SKScene {
+class Level2: SKScene {
     struct locaXY {
         var x : Int
         var y : Int
     }
-    let row = 7
-    let col = 6
+    let row = 10
+    let col = 8
     var diamondChoseI : Int = 0
     var diamondChoseJ : Int = 0
     var diamondToI : Int = 0
     var diamondToJ : Int = 0
     
-    var score = 0;
+   // var score = 0;
     
     var Q = Array(count: 300, repeatedValue: locaXY(x: -1, y: -1))
     
-    var diamondsArray = Array(count: 8, repeatedValue: Array(count: 7, repeatedValue: SKSpriteNode(imageNamed: "1.png")))
+    var diamondsArray = Array(count: 20, repeatedValue: Array(count: 20, repeatedValue: SKSpriteNode(imageNamed: "1.png")))
     
-    var diamondsArraySTT = Array(count: 8, repeatedValue: Array(count: 7, repeatedValue: -1))
-    var ddDiamonds = Array(count: 8, repeatedValue: Array(count: 7, repeatedValue: false))
+    var diamondsArraySTT = Array(count: 20, repeatedValue: Array(count: 20, repeatedValue: -1))
+    var ddDiamonds = Array(count: 20, repeatedValue: Array(count: 20, repeatedValue: false))
+    
+    //ok2 = true
     func radDiamonds() -> Int {
         return Int(arc4random_uniform(6))
         //return 1
@@ -69,7 +71,7 @@ class GameScene: SKScene {
         
         switch x {
         case 0:
-            diamondsArray[i][j] = SKSpriteNode(imageNamed: "bomb")
+            diamondsArray[i][j] = SKSpriteNode(imageNamed: "arrow")
         case 1:
             diamondsArray[i][j] = SKSpriteNode(imageNamed: "1")
         //diamondsArray[i][j].texture = SKTexture(imageNamed: "1")
@@ -89,7 +91,7 @@ class GameScene: SKScene {
             
             
         }
-        diamondsArray[i][j].size = CGSize(width: 50, height: 40)
+        diamondsArray[i][j].size = CGSize(width: 30, height: 30)
         diamondsArraySTT[i][j] = x
     }
     
@@ -122,8 +124,8 @@ class GameScene: SKScene {
     
     func setPositionForDiamondsArray(i : Int , j : Int) {
         
-        let dx = (self.frame.size.width-55)/5 * CGFloat(j)
-        let dy = (self.frame.size.height-70)/6 * CGFloat(i)
+        let dx = (self.frame.size.width)/(CGFloat)(col) * CGFloat(j)
+        let dy = (self.frame.size.height-9)/(CGFloat)(row) * CGFloat(i)
         //diamondsArray[i][j].position = CGPoint(x: dx, y: dy)
         self.diamondsArray[i][j].runAction(SKAction.moveTo(CGPoint.init(x: dx, y: dy), duration: 0.3))
         //print(dx," ",dy," ","{",i,",",j,"}")
@@ -482,7 +484,7 @@ class GameScene: SKScene {
         //        while x == 0 {
         //            x=radDiamonds()
         //        }
-        setImageOfDiamonds(x, i: i, j: j,i0 : "bomb" , i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
+        setImageOfDiamonds(x, i: i, j: j,i0 : "arrow" , i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
         
         //        switch x {
         //        case 1:
@@ -504,7 +506,7 @@ class GameScene: SKScene {
         //
         //
         //        }
-        diamondsArray[i][j].size = CGSize(width: 50, height: 40)
+        //dfiamondsArray[i][j].size = CGSize(width: 50, height: 40)
         diamondsArraySTT[i][j] = x
     }
     
@@ -515,23 +517,23 @@ class GameScene: SKScene {
     }
     
     func playBombSound(x: CGPoint) {
-        let play = SKAction.playSoundFileNamed("Explosion.wav", waitForCompletion: false)
+        let play = SKAction.playSoundFileNamed("ArrowEat.wav", waitForCompletion: false)
         self.runAction(play)
-        let explosionEmitterNode = SKEmitterNode(fileNamed:"explosion.sks")
-        explosionEmitterNode!.position = x
-        addChild(explosionEmitterNode!)
+//        let explosionEmitterNode = SKEmitterNode(fileNamed:"explosion.sks")
+//        explosionEmitterNode!.position = x
+//        addChild(explosionEmitterNode!)
         
     }
     
     func changeDiamondsFromNormalToHighlighted(i : Int , j : Int)  {
         let x = diamondsArraySTT[i][j]
-        setImageOfDiamonds(x, i: i, j: j, i0 : "bomb" , i1: "1hl", i2: "2hl", i3: "3hl", i4: "4hl", i5: "5hl")
+        setImageOfDiamonds(x, i: i, j: j, i0 : "arrow" , i1: "1hl", i2: "2hl", i3: "3hl", i4: "4hl", i5: "5hl")
         
     }
     
     func changeDiamondsFormHighlightedToNormal(i : Int , j :Int)  {
         let x = diamondsArraySTT[i][j]
-        setImageOfDiamonds(x, i: i, j: j, i0 : "bomb" , i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
+        setImageOfDiamonds(x, i: i, j: j, i0 : "arrow" , i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
         
     }
     
@@ -539,7 +541,6 @@ class GameScene: SKScene {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
-        time = 0.3
         diamondChoseI=0
         diamondChoseJ=0
         diamondToI=0
@@ -661,24 +662,12 @@ class GameScene: SKScene {
         }
     }
     
-    var time: Double = 0.3
     
     
     func explode(i: Int, j: Int) {
-        time -= 0.1
-        ddDiamonds[i][j] = false
-        score += 1
-        for i2 in (i-1)...(i+1) {
-            for j2 in (j-1)...(j+1) {
-                
-                if (( diamondsArraySTT[i2][j2] == 0) && (ddDiamonds[i2][j2]))  {
-                    explode(i2, j: j2)
-                }
-                diamondsArraySTT[i2][j2] = -1;
-                
-            }
+        for i2 in 1..<row {
+            diamondsArraySTT[i2][j] = -1
         }
-        time += 0.1
         let delete = SKAction.runBlock{
             self.eatDiamonds()
         }
@@ -688,7 +677,7 @@ class GameScene: SKScene {
         let drop = SKAction.runBlock{
             self.dropDiamond()
         }
-        self.runAction(SKAction.sequence([SKAction.waitForDuration(0.3-time),delete,playSound,SKAction.waitForDuration(0.3),drop]))
+        self.runAction(SKAction.sequence([SKAction.waitForDuration(0.3),delete,playSound,SKAction.waitForDuration(0.3),drop]))
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -742,7 +731,7 @@ class GameScene: SKScene {
                 self.dropDiamond()
             }
             let label = SKAction.runBlock{
-                self.scoreLabel.text = "Score :" + String(self.score)
+                self.scoreLabel.text = "Score :" + String(score)
             }
             self.runAction(SKAction.sequence([SKAction.waitForDuration(0.5),delete,playSound,SKAction.waitForDuration(0.32),drop,SKAction.waitForDuration(0.1),label]))
             

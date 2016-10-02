@@ -10,7 +10,7 @@ import SpriteKit
 import AVFoundation
 import UIKit
 
-class Level2: SKScene {
+class GameScene: SKScene  {
     struct locaXY {
         var x : Int
         var y : Int
@@ -22,7 +22,7 @@ class Level2: SKScene {
     var diamondToI : Int = 0
     var diamondToJ : Int = 0
     
-    var score = 0;
+  //  var score = 0;
     
     var Q = Array(count: 300, repeatedValue: locaXY(x: -1, y: -1))
     
@@ -418,6 +418,12 @@ class Level2: SKScene {
         
     }
     
+    func playNewArraySound() {
+        let play = SKAction.playSoundFileNamed("newArray.wav", waitForCompletion: false)
+        
+        self.runAction(play)
+    }
+    
     func changeDiamondsFromNormalToHighlighted(i : Int , j : Int)  {
         let x = diamondsArraySTT[i][j]
         setImageOfDiamonds(x, i: i, j: j, i0 : "bomb" , i1: "1hl", i2: "2hl", i3: "3hl", i4: "4hl", i5: "5hl")
@@ -518,6 +524,7 @@ class Level2: SKScene {
                 }
                 let checkIsThereValidMove = SKAction.runBlock{
                     if !self.checkLetorNot() {
+                        self.playNewArraySound()
                         let skView = self.view! as SKView
                         let gameScene = GameScene(size: skView.frame.size)
                         skView.presentScene(gameScene)
@@ -567,7 +574,15 @@ class Level2: SKScene {
         let drop = SKAction.runBlock{
             self.dropDiamond()
         }
-        self.runAction(SKAction.sequence([SKAction.waitForDuration(0.3-time),delete,playSound,SKAction.waitForDuration(0.3),drop]))
+        let checkIsThereValidMove = SKAction.runBlock{
+            if !self.checkLetorNot() {
+                self.playNewArraySound()
+                let skView = self.view! as SKView
+                let gameScene = GameScene(size: skView.frame.size)
+                skView.presentScene(gameScene)
+            }
+        }
+        self.runAction(SKAction.sequence([SKAction.waitForDuration(0.3-time),delete,playSound,SKAction.waitForDuration(0.3),drop,SKAction.waitForDuration(1),checkIsThereValidMove]))
     }
  
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -593,6 +608,7 @@ class Level2: SKScene {
                         }
                        
                         explode(diamondToI,j: diamondToJ)
+                        return
                     }
                     
                     changeDiamondsFormHighlightedToNormal(diamondChoseI, j: diamondChoseJ)
@@ -621,10 +637,16 @@ class Level2: SKScene {
                 self.dropDiamond()
             }
             let label = SKAction.runBlock{
-                self.scoreLabel.text = "Score :" + String(self.score)
+                self.scoreLabel.text = "Score :" + String(score)
             }
             self.runAction(SKAction.sequence([SKAction.waitForDuration(0.5),delete,playSound,SKAction.waitForDuration(0.32),drop,SKAction.waitForDuration(0.1),label]))
             
+        }
+        if score >= 20 {
+            let reveal : SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
+            let scene = ChangeToLevel2Scene(size: self.view!.bounds.size)
+            scene.scaleMode = .AspectFill
+            self.view?.presentScene(scene, transition: reveal)
         }
     }
 }
