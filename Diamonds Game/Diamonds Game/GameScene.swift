@@ -28,16 +28,19 @@ class GameScene: SKScene {
     var diamondsArray = Array(count: 8, repeatedValue: Array(count: 7, repeatedValue: SKSpriteNode(imageNamed: "1.png")))
     
     var diamondsArraySTT = Array(count: 8, repeatedValue: Array(count: 7, repeatedValue: -1))
+    var ddDiamonds = Array(count: 8, repeatedValue: Array(count: 7, repeatedValue: false))
     func radDiamonds() -> Int {
-        return Int(arc4random_uniform(5)+0)
+        return Int(arc4random_uniform(6))
         //return 1
     }
     
-    func setImageOfDiamonds(numberOfImage : Int , i : Int , j : Int, i1 : String , i2 : String , i3 : String , i4 : String , i5 :String)  {
+    func setImageOfDiamonds(numberOfImage : Int , i : Int , j : Int, i0 : String ,  i1 : String , i2 : String , i3 : String , i4 : String , i5 :String)  {
         let x = numberOfImage
+        print(x)
         switch x {
-//        case 0:
-//            diamondsArray[i][j].texture = SKTexture(imageNamed: i0)
+        case 0:
+            diamondsArray[i][j].texture = SKTexture(imageNamed: i0)
+            
         case 1:
             diamondsArray[i][j].texture = SKTexture(imageNamed: i1)
             
@@ -177,18 +180,22 @@ class GameScene: SKScene {
         }
         
         if counter==0{
+//            
+//            timer.invalidate()
+//            removeCountDownTimerView()
             
-            timer.invalidate()
-            removeCountDownTimerView()
+//            var labelGameOver = UILabel(frame: CGRectMake(0, 0, 400, 31))
+//            labelGameOver.center = CGPointMake(160, 284)
+//            labelGameOver.textAlignment = NSTextAlignment.Center
+//            labelGameOver.text = "Game Over"
+//            labelGameOver.font = labelGameOver.font.fontWithSize(40)
+//            labelGameOver.textColor = UIColor.redColor()
+//            
+//            self.view!.addSubview(labelGameOver)
             
-            var labelGameOver = UILabel(frame: CGRectMake(0, 0, 400, 31))
-            labelGameOver.center = CGPointMake(160, 284)
-            labelGameOver.textAlignment = NSTextAlignment.Center
-            labelGameOver.text = "Game Over"
-            labelGameOver.font = labelGameOver.font.fontWithSize(40)
-            labelGameOver.textColor = UIColor.redColor()
-
-            self.view!.addSubview(labelGameOver)
+            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+            let scene = GameOverScene(size: self.size)
+            self.view?.presentScene(scene, transition: reveal)
             
         } else{
             
@@ -228,7 +235,7 @@ class GameScene: SKScene {
         addLabelScore()
         addLabelTimer()
         playBackGroundMusic()
-        //startTimer()
+        startTimer()
     }
     
     
@@ -306,10 +313,10 @@ class GameScene: SKScene {
                         }
                         okWhenTouchBegan += 1
                         score += (count-2) * okWhenTouchBegan
-//                        print("score : ", score)
-//                        print("okWhenTouchBegan : " , okWhenTouchBegan)
-//                        //  print(i, " " ,j)
-//                        print("count: ",count )
+                        //                        print("score : ", score)
+                        //                        print("okWhenTouchBegan : " , okWhenTouchBegan)
+                        //                        //  print(i, " " ,j)
+                        //                        print("count: ",count )
                     }
                     count = 1
                 } else { count += 1 }
@@ -333,9 +340,9 @@ class GameScene: SKScene {
                         }
                         okWhenTouchBegan += 1
                         score += (count-2) * okWhenTouchBegan
-//                        print("score : ", score)
-//                        print("okWhenTouchBegan : " , okWhenTouchBegan)
-//                        print("count: ",count )
+                        //                        print("score : ", score)
+                        //                        print("okWhenTouchBegan : " , okWhenTouchBegan)
+                        //                        print("count: ",count )
                         
                     }
                     count = 1
@@ -465,10 +472,10 @@ class GameScene: SKScene {
     
     func changeDiamonds(i : Int ,j : Int) {
         var x=radDiamonds()
-        while x == 0 {
-            x=radDiamonds()
-        }
-        setImageOfDiamonds(x, i: i, j: j, i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
+//        while x == 0 {
+//            x=radDiamonds()
+//        }
+        setImageOfDiamonds(x, i: i, j: j,i0 : "bomb" , i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
         
         //        switch x {
         //        case 1:
@@ -511,13 +518,13 @@ class GameScene: SKScene {
     
     func changeDiamondsFromNormalToHighlighted(i : Int , j : Int)  {
         let x = diamondsArraySTT[i][j]
-        setImageOfDiamonds(x, i: i, j: j, i1: "1hl", i2: "2hl", i3: "3hl", i4: "4hl", i5: "5hl")
+        setImageOfDiamonds(x, i: i, j: j, i0 : "bomb" , i1: "1hl", i2: "2hl", i3: "3hl", i4: "4hl", i5: "5hl")
         
     }
     
     func changeDiamondsFormHighlightedToNormal(i : Int , j :Int)  {
         let x = diamondsArraySTT[i][j]
-        setImageOfDiamonds(x, i: i, j: j, i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
+        setImageOfDiamonds(x, i: i, j: j, i0 : "bomb" , i1: "1", i2: "2", i3: "3", i4: "4", i5: "5")
         
     }
     
@@ -564,7 +571,7 @@ class GameScene: SKScene {
             }
         }
     }
-   
+    
     func swapArray2Diamonds(i1 : Int,j1 : Int,i2 : Int,j2 : Int ) {
         let m = diamondsArraySTT[i1][j1]
         diamondsArraySTT[i1][j1] = diamondsArraySTT[i2][j2]
@@ -639,10 +646,18 @@ class GameScene: SKScene {
         }
     }
     
+    
     func explode(i: Int, j: Int) {
+        ddDiamonds[i][j] = false
+        score += 1
         for i2 in (i-1)...(i+1) {
             for j2 in (j-1)...(j+1) {
+                
+                if (( diamondsArraySTT[i2][j2] == 0) && (ddDiamonds[i2][j2]))  {
+                    explode(i2, j: j2)
+                }
                 diamondsArraySTT[i2][j2] = -1;
+                
             }
         }
         let delete = SKAction.runBlock{
@@ -654,38 +669,31 @@ class GameScene: SKScene {
         let drop = SKAction.runBlock{
             self.dropDiamond()
         }
-        self.runAction(SKAction.sequence([SKAction.waitForDuration(0.32),delete,playSound,SKAction.waitForDuration(0.32),drop]))
+        self.runAction(SKAction.sequence([SKAction.waitForDuration(0.01),delete,playSound,SKAction.waitForDuration(0.01),drop]))
     }
-    
+ 
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let location = touch!.locationInNode(self)
         let touchedNode = self.nodeAtPoint(location)
-        let dxTouch = location.x
-        let dyTouch = location.y
+   
         //print(dxTouch," ",dyTouch)
         for i in 1..<row {
             for j in 1..<col {
-                //                let dx = diamondsArray[i][j].position.x + 40
-                //                let dy = diamondsArray[i][j].position.y + 30
-                //                let dxm = diamondsArray[i][j].position.x
-                //                let dym = diamondsArray[i][j].position.y
-                //
-                //                if ((dxm<=dxTouch) && ( dym <= dyTouch) && (dyTouch<=dy) && (dxTouch<=dx)){
-                //                    print("touchesEnded",i," ",j)
-                //                    diamondToI=i;
-                //                    diamondToJ=j;
-                //                    changeDiamondsFormHighlightedToNormal(diamondChoseI, j: diamondChoseJ)
-                //                    run()
-                //                    return
-                //                }
                 if touchedNode == diamondsArray[i][j] {
                     print("touchesEnded",i," ",j)
                     print("diamondsArraySTT[i][j] = ",diamondsArraySTT[i][j])
-                    diamondToI=i;
-                    diamondToJ=j;
+                    diamondToI=i
+                    diamondToJ=j
+                    
                     
                     if diamondChoseI == diamondToI && diamondChoseJ == diamondToJ && diamondsArraySTT[diamondToI][diamondToJ] == 0 {
+                        for i1 in 1..<row {
+                            for j1 in 1..<col {
+                                ddDiamonds[i1][j1]=true
+                            }
+                        }
+                       
                         explode(diamondToI,j: diamondToJ)
                     }
                     
