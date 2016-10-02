@@ -228,7 +228,7 @@ class GameScene: SKScene {
         addLabelScore()
         addLabelTimer()
         playBackGroundMusic()
-        //startTimer()
+        startTimer()
     }
     
     
