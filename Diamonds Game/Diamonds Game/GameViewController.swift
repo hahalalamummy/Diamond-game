@@ -16,18 +16,32 @@ class GameViewController: UIViewController {
         
         print("1")
         //1 cast view to skView and configure view
-        let skView = self.view as! SKView
-        skView.showsNodeCount = true
-        skView.showsFPS = true
+       // let skView = self.view as! SKView
+      //  skView.showsNodeCount = true
+       // skView.showsFPS = true
         
-        print("2")
-        //2 create game scene
-        let gameScene = GameScene(size: skView.frame.size)
         
-        print("3")
-        //3 present game scene
-        skView.presentScene(gameScene)
         
+//        print("2")
+//        //2 create game scene
+//        let gameScene = GameScene(size: skView.frame.size)
+//        
+//        print("3")
+//        //3 present game scene
+//        skView.presentScene(gameScene)
+        
+                // sceneView.showsFPS = true
+        //
+        let sceneView = view as! SKView
+        sceneView.showsFPS = true
+        sceneView.showsNodeCount = true
+     
+        
+        sceneView.ignoresSiblingOrder = true
+        
+        let scene = MenuScene(size: view.bounds.size)
+        scene.scaleMode = .ResizeFill
+        sceneView.presentScene(scene)
         
         //        if let scene = GameScene(fileNamed:"GameScene") {
         //            // Configure the view.

@@ -12,6 +12,7 @@
 		84B920E81DA095580053B58D /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84B920E71DA095580053B58D /* explosion.sks */; };
 		84D2DBD41DA0D55F0088026C /* Level2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D2DBD31DA0D55F0088026C /* Level2.swift */; };
 		93007ABB1DA0BA6400B9811A /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93007ABA1DA0BA6400B9811A /* GameOverScene.swift */; };
+		93007ABD1DA0CCBF00B9811A /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93007ABC1DA0CCBF00B9811A /* MenuScene.swift */; };
 		93205EB51D85079A00EF5763 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93205EB41D85079A00EF5763 /* AppDelegate.swift */; };
 		93205EB71D85079A00EF5763 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93205EB61D85079A00EF5763 /* GameScene.sks */; };
 		93205EB91D85079A00EF5763 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93205EB81D85079A00EF5763 /* GameScene.swift */; };
@@ -29,6 +30,7 @@
 		84B920E71DA095580053B58D /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
 		84D2DBD31DA0D55F0088026C /* Level2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
 		93007ABA1DA0BA6400B9811A /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		93007ABC1DA0CCBF00B9811A /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		93205EB11D85079900EF5763 /* Diamonds Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diamonds Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93205EB41D85079A00EF5763 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93205EB61D85079A00EF5763 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				84B920E71DA095580053B58D /* explosion.sks */,
 				84B920E41DA095280053B58D /* spark.png */,
 				93007ABA1DA0BA6400B9811A /* GameOverScene.swift */,
+				93007ABC1DA0CCBF00B9811A /* MenuScene.swift */,
 			);
 			path = "Diamonds Game";
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				84D2DBD41DA0D55F0088026C /* Level2.swift in Sources */,
 				93205EB91D85079A00EF5763 /* GameScene.swift in Sources */,
 				93205EBB1D85079A00EF5763 /* GameViewController.swift in Sources */,
+				93007ABD1DA0CCBF00B9811A /* MenuScene.swift in Sources */,
 				93007ABB1DA0BA6400B9811A /* GameOverScene.swift in Sources */,
 				93205EB51D85079A00EF5763 /* AppDelegate.swift in Sources */,
 			);
