@@ -37,7 +37,7 @@ class GameViewController: UIViewController {
         sceneView.showsNodeCount = true
      
         
-        sceneView.ignoresSiblingOrder = true
+        
         
         let scene = MenuScene(size: view.bounds.size)
         scene.scaleMode = .ResizeFill

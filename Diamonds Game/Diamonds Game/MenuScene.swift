@@ -9,42 +9,46 @@
 import SpriteKit
 
 class MenuScene: SKScene {
-    
-    override func didMoveToView(view: SKView) {
-        addMenuScene()
-        addButtons()
-    }
-    let background = SKSpriteNode(imageNamed: "menuGame")
-    private func addMenuScene(){
+    let level1Button = SKSpriteNode(imageNamed: "Level1Button")
+    override init(size: CGSize ) {
+        super.init(size: size )
         
-        //1
-        
-        
-        //2
+        let background = SKSpriteNode(imageNamed: "menuGame")
         background.anchorPoint = CGPoint(x: 0, y: 0)
         background.position = CGPointZero
         background.size = size
-        //3
         addChild(background)
         
-    }
-     let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
-    private func addButtons() {
-       
-        button.backgroundColor = .greenColor()
-        button.setTitle("Test Button", forState: .Normal)
-        button.addTarget(self, action: #selector(startGame), forControlEvents: .TouchUpInside)
         
-        self.view!.addSubview(button)
-        
+        level1Button.position = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
+        addChild(level1Button)
     }
     
-    @objc private func startGame() {
-        button.removeFromSuperview()
-        background.removeFromParent()
-        let gameScene = GameScene(size: view!.bounds.size)
-        let transition = SKTransition.fadeWithDuration(0.15)
-        view!.presentScene(gameScene, transition: transition)
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
+//        for touch: AnyObject in touches {
+//            //            let location = touch.locationInNode(self)
+//            //            let node = self.nodeAtPoint(location) //1
+//            //            if node.name == "replay" { //2
+//            let reveal : SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
+//            let scene = GameScene(size: self.view!.bounds.size)
+//            scene.scaleMode = .AspectFill
+//            self.view?.presentScene(scene, transition: reveal)
+//            //           }
+//        }
+        let touch = touches.first
+        let location = touch!.locationInNode(self)
+        let touchedNode = self.nodeAtPoint(location)
+        if touchedNode == level1Button {
+            let reveal : SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
+            let scene = GameScene(size: self.view!.bounds.size)
+            scene.scaleMode = .AspectFill
+            self.view?.presentScene(scene, transition: reveal)
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
