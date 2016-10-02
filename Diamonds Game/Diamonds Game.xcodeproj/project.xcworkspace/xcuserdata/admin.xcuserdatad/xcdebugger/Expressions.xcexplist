@@ -3,10 +3,18 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
+         contextName = "GameScene.dropDiamond() -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
-               value = "checkCanEatOrNot()">
+               value = "diamondsArraySTT[i][j]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.explode(Int, j : Int) -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "time">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -41,10 +49,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameScene.dropDiamond() -&gt; ():GameScene.swift">
+         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
-               value = "diamondsArraySTT[i][j]">
+               value = "checkCanEatOrNot()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -427,6 +427,7 @@ class GameScene: SKScene {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
+        time = 0.3
         diamondChoseI=0
         diamondChoseJ=0
         diamondToI=0
@@ -525,8 +526,11 @@ class GameScene: SKScene {
         }
     }
     
+    var time: Double = 0.3
+    
     
     func explode(i: Int, j: Int) {
+        time -= 0.1
         ddDiamonds[i][j] = false
         score += 1
         for i2 in (i-1)...(i+1) {
@@ -539,6 +543,7 @@ class GameScene: SKScene {
                 
             }
         }
+        time += 0.1
         let delete = SKAction.runBlock{
             self.eatDiamonds()
         }
@@ -548,7 +553,7 @@ class GameScene: SKScene {
         let drop = SKAction.runBlock{
             self.dropDiamond()
         }
-        self.runAction(SKAction.sequence([SKAction.waitForDuration(0.01),delete,playSound,SKAction.waitForDuration(0.01),drop]))
+        self.runAction(SKAction.sequence([SKAction.waitForDuration(0.3-time),delete,playSound,SKAction.waitForDuration(0.3),drop]))
     }
  
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
