@@ -665,6 +665,7 @@ class Level2: SKScene {
     
     
     func explode(i: Int, j: Int) {
+        score += 1
         for i2 in 1..<row {
             diamondsArraySTT[i2][j] = -1
         }

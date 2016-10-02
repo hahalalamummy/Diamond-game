@@ -42,7 +42,7 @@ class MenuScene: SKScene {
         let touchedNode = self.nodeAtPoint(location)
         if touchedNode == level1Button {
             let reveal : SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
-            let scene = Level2(size: self.view!.bounds.size)
+            let scene = GameScene(size: self.view!.bounds.size)
             scene.scaleMode = .AspectFill
             self.view?.presentScene(scene, transition: reveal)
         }
